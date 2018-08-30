@@ -1,0 +1,24 @@
+{
+  "name": "sb-power-gauge",
+  "version": "0.0.1",
+  "description": "Sends data to RG-wallhang wirelessly over infrared",
+  "main": "app.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RuckerGauge/sbPowerGauge.git"
+  },
+  "author": "John Rucker",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "cron": "^1.1.0",
+    "rpio": "^0.9.10",
+    "sunnyboy-web-box-data-fetcher": "git+https://github.com/RuckerGauge/sunnyboyWebBoxDataFetcher.git"
+  }
+}
