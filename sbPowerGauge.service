@@ -1,0 +1,17 @@
+[Unit]
+Description=sbPowerGauge
+
+[Service]
+ExecStart=/bin/bash /home/pi/sbPowerGauge/autoStart
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=sbPowerGauge
+User=root
+Group=root
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/pi/sbPowerGauge
+
+[Install]
+WantedBy=multi-user.target
