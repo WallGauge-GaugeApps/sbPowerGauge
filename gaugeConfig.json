@@ -1,6 +1,6 @@
 {
     "descripition":"Sunnyboy WebBox",
-    "CalibrationTable": [[0,0],[3500,307],[7000,614]],
+    "CalibrationTable": [[0,0],[3500,307],[7250,614]],
     "WebBoxIP":"10.50.0.50",
     "gaugeIrAddress":"26",
     "imageURL":""
