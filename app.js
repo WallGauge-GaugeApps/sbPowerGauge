@@ -1,7 +1,7 @@
-var irTransmitter =     require('./irdClass.js');
+var irTransmitter =     require('irdTxClass');
 var gauge =             require('./gaugeConfig.json');
 var rpio =              require('rpio');
-var sunnyBoyWebBox =         require('sunnyboy-web-box-data-fetcher');
+var sunnyBoyWebBox =    require('sunnyboy-web-box-data-fetcher');
 
 const LedPin = 8;
 rpio.open(LedPin, rpio.OUTPUT, rpio.LOW);
