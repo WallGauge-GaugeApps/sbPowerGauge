@@ -1,4 +1,4 @@
-var irTransmitter =     require('irdTxClass');
+var irTransmitter =     require('irdtxclass');
 var gauge =             require('./gaugeConfig.json');
 var rpio =              require('rpio');
 var sunnyBoyWebBox =    require('sunnyboy-web-box-data-fetcher');
