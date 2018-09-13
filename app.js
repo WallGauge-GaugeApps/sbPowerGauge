@@ -35,8 +35,6 @@ function txGaugeValues(valueToSend){
     rpio.write(LedPin, rpio.HIGH);
     setTimeout(function(){rpio.write(LedPin, rpio.LOW);}, 2000);
 
-
-    tx.cmdQueueClear();
     tx.sendValue(valueToSend)
 }
 
