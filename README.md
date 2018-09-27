@@ -8,7 +8,7 @@ This Node.JS app reads the real time solar production in kilowatts from a SunnyB
 1. Raspbian Stretch Lite
 2. Node.js v8.5 or newer
 3. git
-4. pigpio
+4. [irdTxServer ]( https://github.com/RuckerGauge/irdTxServer) installed and running (waiting for gauge data).
 ## Install
 On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magpi/ssh-remote-control-raspberry-pi/):
 * type `sudo mkdir /opt/rGauge` if directory doesn't already exist.
