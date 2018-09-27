@@ -1,4 +1,4 @@
 # This bash file is called by pi.service 
 echo "system startup"
 echo ".............. System Startup ............." 
-sudo /usr/local/bin/node /home/pi/sbPowerGauge/app.js
+sudo /usr/local/bin/node /opt/rGauge/sbPowerGauge/app.js
