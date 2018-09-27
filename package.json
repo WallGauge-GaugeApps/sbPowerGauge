@@ -19,7 +19,7 @@
   "dependencies": {
     "cron": "^1.1.0",
     "sunnyboy-web-box-data-fetcher": "git+https://github.com/RuckerGauge/sunnyboyWebBoxDataFetcher.git",
-    "irdTxClass":"git+https://github.com/RuckerGauge/irdTxClass.git",
+    "irdtxclass":"git+https://github.com/RuckerGauge/irdTxClass.git",
     "rpio": "^0.9.10"
   }
 }
