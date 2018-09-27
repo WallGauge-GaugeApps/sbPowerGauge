@@ -23,6 +23,8 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
 * type `sudo systemctl enable sbPowerGauge.service` to enable auto startup of the servers when the Pi is rebooted. 
 * type `sudo systemctl start sbPowerGauge.service` to start the service now.
 * type `sudo systemctl status sbPowerGauge.service` to see the status of the service.  You can also use `sudo tail -f /var/log/syslog' to see real time log information.  
-## more gauge pictures:
+### Above commands in a Linux chain (after making directory)
+`cd /opt/rGauge ; git clone https://github.com/RuckerGauge/sbPowerGauge.git ; cd sbPowerGauge ; npm install ; sudo cp /opt/rGauge/sbPowerGauge/sbPowerGauge.service /etc/systemd/system ; sudo systemctl enable sbPowerGauge.service ; sudo systemctl status sbPowerGauge.service `
+## More Gauge pictures:
 ![pic of Power Gauge](/pics/solarPowerGaugeOpenTop.png)
 ![pic of Power Gauge](/pics/solarPowerGaugeOpenBottom.png)
