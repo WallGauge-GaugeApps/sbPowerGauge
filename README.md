@@ -27,7 +27,7 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
 `cd /opt/rGauge ; git clone https://github.com/RuckerGauge/sbPowerGauge.git ; cd sbPowerGauge ; npm install ; sudo cp /opt/rGauge/sbPowerGauge/sbPowerGauge.service /etc/systemd/system ; sudo systemctl enable sbPowerGauge.service ; sudo systemctl start sbPowerGauge.service ; sudo systemctl status sbPowerGauge.service `
 ## Configure the applicaiton to use your SunnyBoy Web Box
 Open the gaugeConfig.json and add your SunnyBoy Web Box's IP address to the "WebBoxIP" setting.
-from the /opt/rGauge/sbPowerGauge directory type `nano gaugeConfig.json`, to edit file. Then save and reboot the Raspberry Pi.
+From the /opt/rGauge/sbPowerGauge directory type `nano gaugeConfig.json`, to edit file. Then save and reboot the Raspberry Pi.
 
 ## More Gauge pictures:
 ![pic of Power Gauge](/pics/solarPowerGaugeOpenTop.png)
