@@ -12,7 +12,7 @@ This Node.JS app reads the real-time solar production value in kilowatts from a 
 ## Install
 On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magpi/ssh-remote-control-raspberry-pi/):
 * type `sudo mkdir /opt/rGauge` if directory doesn't already exist.
-* type `sudo sudo chown -R pi /opt/rGauge` to give the user pi ownership of the new directory.
+* type `sudo chown -R pi /opt/rGauge` to give the user pi ownership of the new directory.
   * If your logged in as a user other than pi replace pi in the above command with your user name.  
 * type `cd /opt/rGauge`.  All Rucker Gauge apps are installed from this directory
 * type `git clone https://github.com/RuckerGauge/sbPowerGauge.git`
