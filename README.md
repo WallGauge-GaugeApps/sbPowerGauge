@@ -1,9 +1,9 @@
-# sbPowerGauge
-This Node.JS app reads the real time solar production in kilowatts from a SunnyBoy Web Box via its REST API.  The solar production value is then sent to a physical battery powered gauge for display with the [irdTxClass ]( https://github.com/RuckerGauge/irdTxClass).  This application is intended to run on a Raspberry Pi Zero W configured as the Gauge Data Transmitter (see [irdTxServer ]( https://github.com/RuckerGauge/irdTxServer)).   
+# sbPowerGauge (Data Delegate)
+This Node.JS app reads the real time solar production in kilowatts from a SMA Sunny WebBox via its REST API.  The solar production value is then sent to a physical battery powered gauge for display with the [irdTxClass ]( https://github.com/RuckerGauge/irdTxClass).  This application is intended to run on a Raspberry Pi Zero W configured as the Gauge Data Transmitter (see [irdTxServer ]( https://github.com/RuckerGauge/irdTxServer)).   
 ![pic of Power Gauge](/pics/solarPowerGauge.png)
 ## Hardware Requirements
 1. Raspberry Pi Zero W
-1. RuckerGauge.com Gauge Data Transmitter daughter board.
+1. RuckerGauge.com Gauge Data Transmitter Daughterboard.
 ## Software Requirements (must be installed before Install)
 1. Raspbian Stretch Lite
 2. Node.js v8.5 or newer
