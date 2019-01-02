@@ -1,6 +1,6 @@
 #!/bin/bash
 # To make this file executable follow these steps https://stackoverflow.com/questions/21691202/how-to-create-file-execute-mode-permissions-in-git-on-windows
-echo "un-install services starts now..."
+echo "un-install service will stop and remove this app as a service starts now..."
 echo "systemctl stop sbPowerGauge.service"
 sudo systemctl stop sbPowerGauge.service
 echo "systemctl disable sbPowerGauge.service"

@@ -1,6 +1,6 @@
 #!/bin/bash
 # To make this file executable follow these steps https://stackoverflow.com/questions/21691202/how-to-create-file-execute-mode-permissions-in-git-on-windows
-echo "NPM post install shell starts now..."
+echo "NPM post install shell that installs this app as service starts now..."
 echo "copy ./sbPowerGauge.service /etc/systemd/system"
 sudo cp ./postInstall/sbPowerGauge.service /etc/systemd/system
 echo "systemctl enable sbPowerGauge.service"
