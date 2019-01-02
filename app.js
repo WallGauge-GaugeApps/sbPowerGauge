@@ -1,10 +1,6 @@
 var irTransmitter =     require('irdtxclass');
 var gauge =             require('./gaugeConfig.json');
-var rpio =              require('rpio');
 var sunnyBoyWebBox =    require('sunnyboy-web-box-data-fetcher');
-
-const LedPin = 8;
-rpio.open(LedPin, rpio.OUTPUT, rpio.LOW);
 
 // Load gauge configuration into gCfg object based on gConfig.json and region1Master.json
 
@@ -32,9 +28,6 @@ function getSolarData(){
 }
 
 function txGaugeValues(valueToSend){
-    rpio.write(LedPin, rpio.HIGH);
-    setTimeout(function(){rpio.write(LedPin, rpio.LOW);}, 2000);
-
     tx.sendValue(valueToSend)
 }
 
