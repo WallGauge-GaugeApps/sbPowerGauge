@@ -7,8 +7,8 @@ Restart=on-failure
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=sbPowerGauge
-User=root
-Group=root
+User=pi
+Group=pi
 Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 Environment=NODE_ENV=production
 WorkingDirectory=/opt/rGauge/sbPowerGauge
