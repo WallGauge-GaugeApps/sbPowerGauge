@@ -4,7 +4,8 @@
   "description": "Sends data to RG-wallhang wirelessly over infrared",
   "main": "app.js",
   "scripts": {
-    "test": ""
+    "test": "",
+    "postinstall": "./postInstall/postinstall.sh"
   },
   "repository": {
     "type": "git",
