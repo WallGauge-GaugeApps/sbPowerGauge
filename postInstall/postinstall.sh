@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "NPM Post install shell is startting..."
+echo "NPM post install shell is starts now..."
 echo "copy ./sbPowerGauge.service /etc/systemd/system"
 cp ./sbPowerGauge.service /etc/systemd/system
 echo "systemctl enable sbPowerGauge.service"
