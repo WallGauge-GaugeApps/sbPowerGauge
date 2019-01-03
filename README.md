@@ -19,12 +19,7 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
   * This will create a new subdirectory and download the latest version of this node.js app.
 * type `cd sbPowerGauge`
 * type `npm install` to install all node dependences.
-* Install the service configuration file `sudo cp /opt/rGauge/sbPowerGauge/sbPowerGauge.service /etc/systemd/system`
-* type `sudo systemctl enable sbPowerGauge.service` to enable auto startup of the servers when the Pi is rebooted. 
-* type `sudo systemctl start sbPowerGauge.service` to start the service now.
-* type `sudo systemctl status sbPowerGauge.service` to see the status of the service.  You can also use `sudo tail -f /var/log/syslog` to see real time log information.  
-### Above commands in a Linux chain (after making /opt/rGauge directory).
-`cd /opt/rGauge ; git clone https://github.com/RuckerGauge/sbPowerGauge.git ; cd sbPowerGauge ; npm install ; sudo cp /opt/rGauge/sbPowerGauge/sbPowerGauge.service /etc/systemd/system ; sudo systemctl enable sbPowerGauge.service ; sudo systemctl start sbPowerGauge.service ; sudo systemctl status sbPowerGauge.service `
+
 ## Configure the applicaiton to use your SunnyBoy Web Box
 Open the gaugeConfig.json and add your SunnyBoy Web Box's IP address to the "WebBoxIP" setting.
 From the /opt/rGauge/sbPowerGauge directory type `nano gaugeConfig.json`, to edit file. Then save and reboot the Raspberry Pi.
