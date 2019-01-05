@@ -11,10 +11,10 @@ This Node.JS app reads the real-time solar production value in kilowatts from a 
 4. [irdTxServer ]( https://github.com/RuckerGauge/irdTxServer) installed and running (waiting for gauge data).
 ## Install
 On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magpi/ssh-remote-control-raspberry-pi/):
-* type `sudo mkdir /opt/rGauge/gaugeList` if directory doesn't already exist.
-* type `sudo chown -R pi /opt/rGauge/gaugeList` to give the user pi ownership of the new directory.
+* type `sudo mkdir /opt/rGauge/gList` if directory doesn't already exist.
+* type `sudo chown -R pi /opt/rGauge/gList` to give the user pi ownership of the new directory.
   * If your logged in as a user other than pi replace pi in the above command with your user name.  
-* type `cd /opt/rGauge/gaugeList`.  All Rucker Gauge apps are installed from this directory
+* type `cd /opt/rGauge/gList`.  All Rucker Gauge apps are installed from this directory
 * type `git clone https://github.com/RuckerGauge/sbPowerGauge.git`
   * This will create a new subdirectory and download the latest version of this node.js app.
 * type `cd sbPowerGauge`
