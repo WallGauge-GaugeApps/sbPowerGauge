@@ -3,7 +3,7 @@ This Node.JS app reads the real-time solar production value in kilowatts from a 
 ![pic of Power Gauge](/pics/solarPowerGauge.png)
 ## Hardware Requirements
 1. Raspberry Pi Zero W
-1. RuckerGauge.com Gauge Data Transmitter Daughterboard.
+1. rGauge.com Gauge Data Transmitter Daughterboard.
 ## Software Requirements (must be installed before Install)
 1. Raspbian Stretch Lite
 2. Node.js v8.5 or newer
@@ -18,7 +18,7 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
 * type `cd sbPowerGauge`
 * type `npm install` to install all node dependences.
 
-## Configure the applicaiton to use your SunnyBoy Web Box
+## Configure the application to use your SunnyBoy Web Box
 Open the gaugeConfig.json and add your SunnyBoy Web Box's IP address to the "WebBoxIP" setting.
 From the /opt/rGauge/sbPowerGauge directory type `nano gaugeConfig.json`, to edit file. Then save and reboot the Raspberry Pi.
 

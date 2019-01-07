@@ -8,7 +8,7 @@ StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=sbPowerGauge
 User=rgservice
-Group=rgservice
+Group=irdclient
 Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 Environment=NODE_ENV=production
 WorkingDirectory=/opt/rGauge/gList/sbPowerGauge
