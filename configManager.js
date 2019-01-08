@@ -38,7 +38,7 @@ class gaugeConfig extends EventEmitter{
         var webBoxIp = bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
 
         console.log('Registering event handlers...');
-        webBoxIP.on('WriteValue', (device, arg1)=>{
+        webBoxIp.on('WriteValue', (device, arg1)=>{
             console.log(device + ', has set new IP Address of ' + arg1);
             webBoxIp.setValue(arg1);
             this.setWebBoxIP(arg1);
