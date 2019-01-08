@@ -45,7 +45,7 @@ class gaugeConfig extends EventEmitter{
         });
 
         console.log('setting default characteristic values...');
-        webBoxIp.setValue(this.webBoxIP);
+        webBoxIp.setValue(Config.webBoxIP);
     };
 }
 
