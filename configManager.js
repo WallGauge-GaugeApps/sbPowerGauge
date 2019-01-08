@@ -46,8 +46,8 @@ class gaugeConfig extends EventEmitter{
 
             //console.log('_____________and now this______________')
             //console.dir(parent, {depth: null});
-
-            saveItem({webBoxIP:arg1});
+            var x = arg1.toString('utf8');
+            saveItem({webBoxIP:x});
             parent.webBoxIP = Config.webBoxIP;
             parent.emit('Update');
         });
