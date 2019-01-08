@@ -19,6 +19,7 @@
   "homepage": "",
   "dependencies": {
     "sunnyboy-web-box-data-fetcher": "git+https://github.com/RuckerGauge/sunnyboyWebBoxDataFetcher.git",
-    "irdtxclass":"git+https://github.com/RuckerGauge/irdTxClass.git"
+    "irdtxclass":"git+https://github.com/RuckerGauge/irdTxClass.git",
+    "ble-peripheral": "git+https://github.com/RuckerGauge/blePeripheral.git"
   }
 }

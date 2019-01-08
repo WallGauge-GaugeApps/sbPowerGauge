@@ -1,20 +1,14 @@
-var irTransmitter =     require('irdtxclass');
-var gauge =             require('./gaugeConfig.json');
-var sunnyBoyWebBox =    require('sunnyboy-web-box-data-fetcher');
+const irTransmitter =   require('irdtxclass');
+const sunnyBoyWebBox =  require('sunnyboy-web-box-data-fetcher');
+const Config =          require('./configManager.js');
 
-// Load gauge configuration into gCfg object based on gConfig.json and region1Master.json
+const config = new Config();
 
-var gLst = {};
-var validData = false;
+var tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
+var solarData =  new sunnyBoyWebBox(config.webBoxIP);
 
-
-var tx = new irTransmitter(gauge.gaugeIrAddress, gauge.CalibrationTable);
-var solarData =  new sunnyBoyWebBox(gauge.webBoxIP);
-
-setTimeout(function(){getSolarData();},5000);                          // wait 5 seconds and then send gauge values (only ran once)
-
-setInterval(function(){getSolarData();},  5 * 60 * 1000)              // every 5 minutes 
-
+setTimeout(()  =>{getSolarData();},5000);                          // wait 5 seconds and then send gauge values (only ran once)
+setInterval(() =>{getSolarData();},  5 * 60 * 1000)              // every 5 minutes 
 
 function getSolarData(){
     solarData.updateValues(function(errNumber, errTxt, dtaObj){
@@ -31,4 +25,8 @@ function txGaugeValues(valueToSend){
     tx.sendValue(valueToSend)
 }
 
-
+config.on('Update', ()=>{
+    console.log('New update event has fired.  Reloading gauge objects...');
+    tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
+    solarData =  new sunnyBoyWebBox(config.webBoxIP);
+});
