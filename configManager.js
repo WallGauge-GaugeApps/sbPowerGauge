@@ -59,11 +59,14 @@ function saveItem(itemsToSaveAsObject){
     itemList.forEach((keyName)=>{
         modifiedConfigMaster[keyName] = itemsToSaveAsObject[keyName];
     })
-    fs.writeFileSync(modifiedConfigFilePath, JSON.stringify(modifiedConfigMaster));
+    console.log('Writting file to ' + modifiedConfigFilePath);
+    var result = fs.writeFileSync(modifiedConfigFilePath, JSON.stringify(modifiedConfigMaster));
+    console.log('result = ' + result);
     reloadConfig();
 };
 
 function reloadConfig(){
+    console.log('reloading config...');
     if (fs.existsSync(modifiedConfigFilePath)){
         modifiedConfigMaster = JSON.parse(fs.readFileSync(modifiedConfigFilePath))
     };
