@@ -11,8 +11,8 @@ if (fs.existsSync(modifiedConfigFilePath)){
 };
 
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
-var bPrl={};
-var parent={};
+
+var bPrl = new BLEperipheral(Config.dBusName, Config.uuid, bleMain, false);
 
 class gaugeConfig extends EventEmitter{
     constructor(){
@@ -23,39 +23,33 @@ class gaugeConfig extends EventEmitter{
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
         this.webBoxIP = Config.webBoxIP;
-
-        bPrl = new BLEperipheral(this.dBusName, this.uuid, this._bleMain, false);
-        parent = this;
     };
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
         saveItem({webBoxIP:ipAdd});
         this.webBoxIP = Config.webBoxIP;
         this.emit('Update');
-    }
-
-    _bleMain(DBus){
-        bPrl.logCharacteristicsIO = true;
-        console.log('Initialize charcteristics...')
-        var webBoxIp = bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
-
-        console.log('Registering event handlers...');
-        webBoxIp.on('WriteValue', (device, arg1)=>{
-            console.log(device + ', has set new IP Address of ' + arg1);
-            webBoxIp.setValue(arg1);
-
-            //console.log('_____________and now this______________')
-            //console.dir(parent, {depth: null});
-            var x = arg1.toString('utf8');
-            saveItem({webBoxIP:x});
-            parent.webBoxIP = Config.webBoxIP;
-            parent.emit('Update');
-        });
-
-        console.log('setting default characteristic values...');
-        webBoxIp.setValue(Config.webBoxIP);
     };
-}
+};
+
+
+function bleMain(DBus){
+    var cfg = new gaugeConfig();
+    bPrl.logCharacteristicsIO = true;
+    console.log('Initialize charcteristics...')
+    var webBoxIp = bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
+
+    console.log('Registering event handlers...');
+    webBoxIp.on('WriteValue', (device, arg1)=>{
+        console.log(device + ', has set new IP Address of ' + arg1);
+        webBoxIp.setValue(arg1);
+        var x = arg1.toString('utf8');
+        cfg.setWebBoxIP(x);
+    });
+
+    console.log('setting default characteristic values...');
+    webBoxIp.setValue(cfg.webBoxIP);
+};
 
 function saveItem(itemsToSaveAsObject){
     console.log('saveItem called with:');
@@ -67,7 +61,7 @@ function saveItem(itemsToSaveAsObject){
     })
     fs.writeFileSync(modifiedConfigFilePath, JSON.stringify(modifiedConfigMaster));
     reloadConfig();
-}
+};
 
 function reloadConfig(){
     if (fs.existsSync(modifiedConfigFilePath)){
@@ -75,6 +69,6 @@ function reloadConfig(){
     };
     Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
     console.log('config reloaded...');
-}
+};
 
 module.exports = gaugeConfig;
