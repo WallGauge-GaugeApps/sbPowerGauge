@@ -11,6 +11,7 @@ if (fs.existsSync(modifiedConfigFilePath)){
 };
 
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
+var bPrl={};
 
 class gaugeConfig extends EventEmitter{
     constructor(){
@@ -22,8 +23,7 @@ class gaugeConfig extends EventEmitter{
         this.gaugeIrAddress = Config.gaugeIrAddress;
         this.webBoxIP = Config.webBoxIP;
 
-        this._bPrl = new BLEperipheral(this.dBusName, this.uuid, this._bleMain)
-
+        bPrl = new BLEperipheral(this.dBusName, this.uuid, this._bleMain, false);
     };
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
@@ -33,9 +33,9 @@ class gaugeConfig extends EventEmitter{
     }
 
     _bleMain(DBus){
-        this._bPrl.logCharacteristicsIO = true;
+        bPrl.logCharacteristicsIO = true;
         console.log('Initialize charcteristics...')
-        var webBoxIp =   bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
+        var webBoxIp = bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
 
         console.log('Registering event handlers...');
         webBoxIP.on('WriteValue', (device, arg1)=>{
