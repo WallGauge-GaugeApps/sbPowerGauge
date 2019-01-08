@@ -12,6 +12,7 @@ if (fs.existsSync(modifiedConfigFilePath)){
 
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
 var bPrl={};
+var parent={};
 
 class gaugeConfig extends EventEmitter{
     constructor(){
@@ -24,6 +25,7 @@ class gaugeConfig extends EventEmitter{
         this.webBoxIP = Config.webBoxIP;
 
         bPrl = new BLEperipheral(this.dBusName, this.uuid, this._bleMain, false);
+        parent = this;
     };
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
@@ -42,6 +44,7 @@ class gaugeConfig extends EventEmitter{
             console.log(device + ', has set new IP Address of ' + arg1);
             webBoxIp.setValue(arg1);
 
+            this = parent;
             console.log('_____________and now this______________')
             console.dir(this, {depth: null});
 
