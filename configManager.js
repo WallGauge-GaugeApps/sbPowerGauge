@@ -41,6 +41,10 @@ class gaugeConfig extends EventEmitter{
         webBoxIp.on('WriteValue', (device, arg1)=>{
             console.log(device + ', has set new IP Address of ' + arg1);
             webBoxIp.setValue(arg1);
+
+            console.log('_____________and now this______________')
+            console.dir(this, {depth: null});
+
             this.setWebBoxIP(arg1);
         });
 
