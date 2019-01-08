@@ -15,6 +15,8 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
 * type `cd /opt/rGauge/gList`.  All Rucker Gauge apps are installed from this directory
 * type `git clone https://github.com/RuckerGauge/sbPowerGauge.git`
   * This will create a new subdirectory and download the latest version of this node.js app.
+* type `sudo chown :irdclient sbPowerGauge`  This sets the default group for the directory = irdclient
+* type `sudo chmod g+w sbPowerGauge` This gives the default group write access to the directory so it can create a config file if necessary. 
 * type `cd sbPowerGauge`
 * type `npm install` to install all node dependences.
 

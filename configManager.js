@@ -28,10 +28,10 @@ class gaugeConfig extends EventEmitter{
     setWebBoxIP(ipAdd = '10.1.1.5'){
         saveItem({webBoxIP:ipAdd});
         this.webBoxIP = Config.webBoxIP;
+        console.log('firing "Update" event...');
         this.emit('Update');
     };
 };
-
 
 function bleMain(DBus){
     var cfg = new gaugeConfig();
@@ -60,13 +60,11 @@ function saveItem(itemsToSaveAsObject){
         modifiedConfigMaster[keyName] = itemsToSaveAsObject[keyName];
     })
     console.log('Writting file to ' + modifiedConfigFilePath);
-    var result = fs.writeFileSync(modifiedConfigFilePath, JSON.stringify(modifiedConfigMaster));
-    console.log('result = ' + result);
+    fs.writeFileSync(modifiedConfigFilePath, JSON.stringify(modifiedConfigMaster));
     reloadConfig();
 };
 
 function reloadConfig(){
-    console.log('reloading config...');
     if (fs.existsSync(modifiedConfigFilePath)){
         modifiedConfigMaster = JSON.parse(fs.readFileSync(modifiedConfigFilePath))
     };
