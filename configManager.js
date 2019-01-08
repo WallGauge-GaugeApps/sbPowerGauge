@@ -44,10 +44,9 @@ class gaugeConfig extends EventEmitter{
             console.log(device + ', has set new IP Address of ' + arg1);
             webBoxIp.setValue(arg1);
 
-            console.log('_____________and now this______________')
-            console.dir(parent, {depth: null});
+            //console.log('_____________and now this______________')
+            //console.dir(parent, {depth: null});
 
-            this.setWebBoxIP(arg1);
             saveItem({webBoxIP:arg1});
             parent.webBoxIP = Config.webBoxIP;
             parent.emit('Update');
@@ -59,6 +58,9 @@ class gaugeConfig extends EventEmitter{
 }
 
 function saveItem(itemsToSaveAsObject){
+    console.log('saveItem called with:');
+    console.log(itemsToSaveAsObject);
+
     var itemList = Object.keys(itemsToSaveAsObject);
     itemList.forEach((keyName)=>{
         modifiedConfigMaster[keyName] = itemsToSaveAsObject[keyName];
