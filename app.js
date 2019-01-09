@@ -31,6 +31,6 @@ config.on('Update', ()=>{
     console.log('New update event has fired.  Reloading gauge objects...');
     console.log('The webBoxIP = ' + config.webBoxIP);
 
-    //tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
-    //solarData =  new sunnyBoyWebBox(config.webBoxIP);
+    tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
+    solarData =  new sunnyBoyWebBox(config.webBoxIP);
 });
