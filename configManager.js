@@ -20,13 +20,9 @@ class gaugeConfig extends EventEmitter{
         this.descripition = Config.descripition;
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
-        this.webBoxIP = Config.webBoxIP;
-        this.dBusName = Config.dBusName;
-        this.uuid = Config.uuid;
 
         myEmitter = this.emit;
-        bPrl = new BLEperipheral(this.dBusName, this.uuid, this._bleMain, false);
-
+        bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this._bleMain, false);
     };
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
@@ -35,6 +31,10 @@ class gaugeConfig extends EventEmitter{
         console.log('firing "Update" event...');
         this.emit('Update');
     };
+
+    getWebBoxIP(){
+        return Config.webBoxIP
+    }
 
     _bleMain(DBus){
         bPrl.logCharacteristicsIO = true;
@@ -46,8 +46,7 @@ class gaugeConfig extends EventEmitter{
             console.log(device + ', has set new IP Address of ' + arg1);
             webBoxIp.setValue(arg1);
             var x = arg1.toString('utf8');
-            saveItem({webBoxIP:ipAdd});
-            this.webBoxIP = Config.webBoxIP;
+            saveItem({webBoxIP:x});
             console.log('firing "Update" event...');
             myEmitter('Update');
 
@@ -56,7 +55,7 @@ class gaugeConfig extends EventEmitter{
         });
     
         console.log('setting default characteristic values...');
-        webBoxIp.setValue(this.webBoxIP);
+        webBoxIp.setValue(Config.webBoxIP);
     };
 };
 

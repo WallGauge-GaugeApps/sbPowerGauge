@@ -27,6 +27,7 @@ function txGaugeValues(valueToSend){
 
 config.on('Update', ()=>{
     console.log('New update event has fired.  Reloading gauge objects...');
-    tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
-    solarData =  new sunnyBoyWebBox(config.webBoxIP);
+
+    //tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
+    //solarData =  new sunnyBoyWebBox(config.webBoxIP);
 });
