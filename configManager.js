@@ -12,7 +12,7 @@ if (fs.existsSync(modifiedConfigFilePath)){
 
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster};
 var bPrl = {};
-var myEmitter
+var self
 
 class gaugeConfig extends EventEmitter{
     constructor(){
@@ -20,16 +20,15 @@ class gaugeConfig extends EventEmitter{
         this.descripition = Config.descripition;
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
-
-        myEmitter = function(){this.emit('Update')};
+        self = this;
         bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this._bleMain, false);
     };
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
         saveItem({webBoxIP:ipAdd});
         this.webBoxIP = Config.webBoxIP;
-        console.log('firing "Update" event...');
-        this.emit('Update');
+        //console.log('firing "Update" event...');
+        //this.emit('Update');
     };
 
     getWebBoxIP(){
@@ -47,11 +46,6 @@ class gaugeConfig extends EventEmitter{
             webBoxIp.setValue(arg1);
             var x = arg1.toString('utf8');
             saveItem({webBoxIP:x});
-            console.log('firing "Update" event...');
-            myEmitter();
-
-
-
         });
     
         console.log('setting default characteristic values...');
@@ -96,11 +90,13 @@ function saveItem(itemsToSaveAsObject){
 };
 
 function reloadConfig(){
+    console.log('config reloading...');
     if (fs.existsSync(modifiedConfigFilePath)){
         modifiedConfigMaster = JSON.parse(fs.readFileSync(modifiedConfigFilePath))
     };
     Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
-    console.log('config reloaded...');
+    console.log('firing "Update" event...');
+    self.emit('Update');
 };
 
 module.exports = gaugeConfig;
