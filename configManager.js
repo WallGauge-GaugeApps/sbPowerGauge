@@ -20,10 +20,9 @@ class gaugeConfig extends EventEmitter{
         this.descripition = Config.descripition;
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
-        this.webBoxIP = bleIface.webBoxIP;
+        this.webBoxIP = Config.webBoxIP;
         this.dBusName = Config.dBusName;
         this.uuid = Config.uuid;
-        this.webBoxIP = Config.webBoxIP;   
 
         myEmitter = this.emit;
         bPrl = new BLEperipheral(this.dBusName, this.uuid, this._bleMain, false);
