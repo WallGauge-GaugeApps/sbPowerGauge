@@ -36,4 +36,5 @@ config.on('Update', ()=>{
 
     tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
     solarData =  new sunnyBoyWebBox(config.webBoxIP);
+    getSolarData();
 });
