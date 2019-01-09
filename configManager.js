@@ -12,25 +12,6 @@ if (fs.existsSync(modifiedConfigFilePath)){
 
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
 
-var bleIface = new BleIface();
-
-class gaugeConfig extends EventEmitter{
-    constructor(){
-        super();
-        this.descripition = Config.descripition;
-        this.calibrationTable = Config.calibrationTable;
-        this.gaugeIrAddress = Config.gaugeIrAddress;
-        this.webBoxIP = bleIface.webBoxIP;
-    };
-
-    setWebBoxIP(ipAdd = '10.1.1.5'){
-        saveItem({webBoxIP:ipAdd});
-        this.webBoxIP = Config.webBoxIP;
-        console.log('firing "Update" event...');
-        this.emit('Update');
-    };
-};
-
 class BleIface extends EventEmitter{
     constructor(){
         super();
@@ -67,6 +48,27 @@ class BleIface extends EventEmitter{
 
 
 }
+
+var bleIface = new BleIface();
+
+class gaugeConfig extends EventEmitter{
+    constructor(){
+        super();
+        this.descripition = Config.descripition;
+        this.calibrationTable = Config.calibrationTable;
+        this.gaugeIrAddress = Config.gaugeIrAddress;
+        this.webBoxIP = bleIface.webBoxIP;
+    };
+
+    setWebBoxIP(ipAdd = '10.1.1.5'){
+        saveItem({webBoxIP:ipAdd});
+        this.webBoxIP = Config.webBoxIP;
+        console.log('firing "Update" event...');
+        this.emit('Update');
+    };
+};
+
+
 
 /*
 var bPrl = new BLEperipheral(Config.dBusName, Config.uuid, bleMain, false);
