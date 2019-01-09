@@ -23,9 +23,9 @@ class BleIface extends EventEmitter{
 
     bleMain(DBus){
         var cfg = new gaugeConfig();
-        bPrl.logCharacteristicsIO = true;
+        this.bPrl.logCharacteristicsIO = true;
         console.log('Initialize charcteristics...')
-        var webBoxIp = bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
+        var webBoxIp = this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
     
         console.log('Registering event handlers...');
         webBoxIp.on('WriteValue', (device, arg1)=>{
