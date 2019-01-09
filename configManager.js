@@ -12,7 +12,7 @@ if (fs.existsSync(modifiedConfigFilePath)){
 
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster};
 var bPrl = {};
-var myEmitter = {};
+var myEmitter
 
 class gaugeConfig extends EventEmitter{
     constructor(){
@@ -21,7 +21,7 @@ class gaugeConfig extends EventEmitter{
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
 
-        myEmitter = this.emit;
+        myEmitter = this.emit('Update');
         bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this._bleMain, false);
     };
 
@@ -48,7 +48,7 @@ class gaugeConfig extends EventEmitter{
             var x = arg1.toString('utf8');
             saveItem({webBoxIP:x});
             console.log('firing "Update" event...');
-            myEmitter('Update');
+            myEmitter;
 
 
 
