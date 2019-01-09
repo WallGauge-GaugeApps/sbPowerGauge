@@ -4,6 +4,8 @@ const Config =          require('./configManager.js');
 
 const config = new Config();
 
+console.log('Gauge IR Address = ' + config.gaugeIrAddress);
+console.log('Sunnyboy WebBox IP Address = '+ config.webBoxIP);
 var tx = new irTransmitter(config.gaugeIrAddress, config.calibrationTable);
 var solarData =  new sunnyBoyWebBox(config.webBoxIP);
 

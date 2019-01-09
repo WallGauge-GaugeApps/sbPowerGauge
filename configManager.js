@@ -27,15 +27,7 @@ class gaugeConfig extends EventEmitter{
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
         saveItem({webBoxIP:ipAdd});
-        
-        //console.log('firing "Update" event...');
-        //this.emit('Update');
     };
-
-    getWebBoxIP(){
-        return Config.webBoxIP
-    }
-
 
 };
 
