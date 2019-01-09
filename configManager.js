@@ -48,7 +48,7 @@ class gaugeConfig extends EventEmitter{
             var x = arg1.toString('utf8');
             saveItem({webBoxIP:x});
             console.log('firing "Update" event...');
-            myEmitter;
+            myEmitter();
 
 
 
