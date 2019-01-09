@@ -21,7 +21,7 @@ class gaugeConfig extends EventEmitter{
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
 
-        myEmitter = this.emit('Update');
+        myEmitter = function(){this.emit('Update')};
         bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this._bleMain, false);
     };
 
