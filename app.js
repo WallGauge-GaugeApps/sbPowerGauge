@@ -19,6 +19,9 @@ function getSolarData(){
             console.log("\tToday's total power = " + dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
             console.log('\tTotal all time power generated = '+ dtaObj.powerTotal + " " + dtaObj.powerTotalUnit);
             txGaugeValues(dtaObj.powerNow);
+        } else {
+            console.log('Error getting data from Sunnyboy WebBox');
+            console.log(errTxt);
         }
     })
 }
