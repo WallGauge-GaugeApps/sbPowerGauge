@@ -39,10 +39,11 @@ class gaugeConfig extends EventEmitter{
         saveItem({webBoxIP:ipAdd});
     };
 
-    setGaugeValue(valueStr){
-        gTx.sendValue(valueStr);
-        this.value = valueStr;
-        gaugeValue.setValue(valueStr);
+    setGaugeValue(value){
+        gTx.sendValue(value);
+        var valueWithTime = value.toString() + ', ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
+        this.value = valueWithTime;
+        gaugeValue.setValue(valueWithTime);
         if(gaugeValue.iface.Notifying){
             gaugeValue.notify();
         };
