@@ -76,36 +76,38 @@ function bleMain(DBus){
 
     console.log('Registering event handlers...');
     gaugeCommand.on('WriteValue', (device, arg1)=>{
-        console.log(device + ' has sent a new gauge command = ' + arg1[0]);
-        var cmdNum = arg1.toString();
+        var cmdNum = arg1[0];
+        var cmdValue = arg1[1]
+        console.log(device + ' has sent a new gauge command: number = ' + cmdNum + ', value = ' + cmdValue);
+
         switch (cmdNum) {
-            case '0':
+            case 0:
                 console.log('Sending test battery to gauge...');
                 gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Check_Battery_Voltage));
             break;
     
-            case '1':
+            case 1:
                 console.log('Sending gauge reset request ');
                 gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Reset));
             break;
 
-            case '2':
+            case 2:
                 console.log('Sending gauge Zero Needle request ');
                 gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Zero_Needle));
             break;          
     
-            case '15':
+            case 15:
                 console.log('Sending Identifify gauge request')
                 gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Identifify));
             break;
 
-            case '20':
+            case 20:
                 console.log('Disable normal gauge value TX during adminstration.')
                 self._okToSend = false;
                 gTx.sendEncodedCmd(0);
             break;
     
-            case '21':
+            case 21:
                 console.log('Enable normal gauge value TX.')
                 self._okToSend = true;
             break;
