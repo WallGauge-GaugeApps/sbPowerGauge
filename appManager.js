@@ -41,9 +41,9 @@ class gaugeConfig extends EventEmitter{
 
     setGaugeValue(value){
         gTx.sendValue(value);
-        var valueWithTime = value.toString() + ', ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
-        this.value = valueWithTime;
-        gaugeValue.setValue(valueWithTime);
+        var logValue = value.toString() + ', ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
+        this.value = logValue;
+        gaugeValue.setValue(logValue);
         if(gaugeValue.iface.Notifying){
             gaugeValue.notify();
         };
@@ -62,10 +62,10 @@ class gaugeConfig extends EventEmitter{
 function bleMain(DBus){
     bPrl.logCharacteristicsIO = true;
     console.log('Initialize charcteristics...')
-    gaugeStatus =   bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
-    gaugeValue =    bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
+    gaugeStatus =       bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
+    gaugeValue =        bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
     var gaugeCommand =  bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write"]);
-    var webBoxIp =  bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
+    var webBoxIp =      bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
 
     console.log('Registering event handlers...');
     gaugeCommand.on('WriteValue', (device, arg1)=>{
@@ -73,7 +73,8 @@ function bleMain(DBus){
         var cmdNum = arg1.toString();
         switch (cmdNum) {
             case '0':
-                console.log('Firing gauge battery test event');
+                console.log('Sending test battery to gauge...');
+                gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Check_Battery_Voltage));
 
             break;
     

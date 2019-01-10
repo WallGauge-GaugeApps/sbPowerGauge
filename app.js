@@ -1,12 +1,9 @@
-//const irTransmitter =   require('irdtxclass');
 const sunnyBoyWebBox =  require('sunnyboy-web-box-data-fetcher');
 const AppManager =      require('./appManager.js');
 
 const appMan = new AppManager();
 
-console.log('Gauge IR Address = ' + appMan.gaugeIrAddress);
 console.log('Sunnyboy WebBox IP Address = '+ appMan.webBoxIP);
-//var tx = new irTransmitter(appMan.gaugeIrAddress, appMan.calibrationTable);
 var solarData =  new sunnyBoyWebBox(appMan.webBoxIP);
 
 setTimeout(()  =>{getSolarData();},5000);                       // wait 5 seconds and then send gauge values (only ran once)
@@ -18,7 +15,6 @@ function getSolarData(){
             console.log('Currently generating ' + dtaObj.powerNow + " " + dtaObj.powerNowUnit);
             console.log("\tToday's total power = " + dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
             console.log('\tTotal all time power generated = '+ dtaObj.powerTotal + " " + dtaObj.powerTotalUnit);
-            //txGaugeValues(dtaObj.powerNow);
             appMan.setGaugeValue(dtaObj.powerNow);
             appMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
         } else {
@@ -27,10 +23,6 @@ function getSolarData(){
             appMan.setGaugeStatus('Error: ' + errTxt + ' at, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
         };
     });
-};
-
-function txGaugeValues(valueToSend){
-    tx.sendValue(valueToSend)
 };
 
 appMan.on('Update', ()=>{
