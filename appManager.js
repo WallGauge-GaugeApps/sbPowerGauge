@@ -30,6 +30,7 @@ class gaugeConfig extends EventEmitter{
         this.status = 'ipl, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = 'unknown';
         this.rGaugeCmdTable = gTx._calibrationTable
+        this._okToSend = true;
         this.irTx = {};
         self = this;
         bPrl = new BLEperipheral(Config.dBusName, Config.uuid, bleMain, false);
@@ -40,7 +41,11 @@ class gaugeConfig extends EventEmitter{
     };
 
     setGaugeValue(value){
-        gTx.sendValue(value);
+        if(this._okToSend){
+            gTx.sendValue(value);
+        } else {
+            this.setGaugeStatus('Warining: Gauge value transmission not allowed during adminstration.')
+        };
         var logValue = value.toString() + ', ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = logValue;
         gaugeValue.setValue(logValue);
@@ -79,8 +84,9 @@ function bleMain(DBus){
             break;
     
             case '1':
-                console.log('Firing gauge reset event ');
-
+                console.log('Sending gauge reset request ');
+                gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Reset));
+                
             break;
     
             case '2':
@@ -88,11 +94,15 @@ function bleMain(DBus){
 
             break;
 
-            case '3':
-                onsole.log('Firing set gauge address')
-
+            case '20':
+                console.log('Disable normal gauge value TX during adminstration.')
+                self._okToSend = false;
             break;
     
+            case '21':
+                console.log('Enable normal gauge value TX.')
+                self._okToSend = true;
+            break;
         
             default:
                 console.log('no case for ' + cmdNum);
