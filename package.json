@@ -1,6 +1,6 @@
 {
   "name": "sb-power-gauge",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Sends data to RG-wallhang wirelessly over infrared",
   "main": "app.js",
   "scripts": {
@@ -18,8 +18,8 @@
   },
   "homepage": "",
   "dependencies": {
-    "sunnyboy-web-box-data-fetcher": "git+https://github.com/RuckerGauge/sunnyboyWebBoxDataFetcher.git",
-    "irdtxclass":"git+https://github.com/RuckerGauge/irdTxClass.git",
-    "ble-peripheral": "git+https://github.com/RuckerGauge/blePeripheral.git"
+    "ble-peripheral": "git+https://github.com/RuckerGauge/blePeripheral.git",
+    "irdtxclass": "git+https://github.com/RuckerGauge/irdTxClass.git",
+    "sunnyboy-web-box-data-fetcher": "git+https://github.com/RuckerGauge/sunnyboyWebBoxDataFetcher.git"
   }
 }
