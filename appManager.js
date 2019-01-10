@@ -82,23 +82,27 @@ function bleMain(DBus){
             case '0':
                 console.log('Sending test battery to gauge...');
                 gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Check_Battery_Voltage));
-
             break;
     
             case '1':
                 console.log('Sending gauge reset request ');
                 gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Reset));
-
             break;
+
+            case '2':
+                console.log('Sending gauge Zero Needle request ');
+                gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Zero_Needle));
+            break;          
     
             case '15':
                 console.log('Sending Identifify gauge request')
-
+                gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Identifify));
             break;
 
             case '20':
                 console.log('Disable normal gauge value TX during adminstration.')
                 self._okToSend = false;
+                gTx.sendEncodedCmd(0);
             break;
     
             case '21':
