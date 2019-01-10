@@ -18,7 +18,7 @@ function getSolarData(){
             console.log('Currently generating ' + dtaObj.powerNow + " " + dtaObj.powerNowUnit);
             console.log("\tToday's total power = " + dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
             console.log('\tTotal all time power generated = '+ dtaObj.powerTotal + " " + dtaObj.powerTotalUnit);
-            txGaugeValues(dtaObj.powerNow);
+            //txGaugeValues(dtaObj.powerNow);
             appMan.setGaugeValue(dtaObj.powerNow + ' ' + dtaObj.powerNowUnit + ', ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
             appMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
         } else {
@@ -30,8 +30,7 @@ function getSolarData(){
 };
 
 function txGaugeValues(valueToSend){
-    //tx.sendValue(valueToSend)
-    appMan.setGaugeValue(valueToSend);
+    tx.sendValue(valueToSend)
 };
 
 appMan.on('Update', ()=>{
