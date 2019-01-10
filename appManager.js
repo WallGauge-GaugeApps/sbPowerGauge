@@ -45,6 +45,7 @@ class gaugeConfig extends EventEmitter{
             gTx.sendValue(value);
         } else {
             this.setGaugeStatus('Warining: Gauge value transmission not allowed during adminstration.')
+            return false;
         };
         var logValue = value.toString() + ', ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = logValue;
@@ -52,6 +53,7 @@ class gaugeConfig extends EventEmitter{
         if(gaugeValue.iface.Notifying){
             gaugeValue.notify();
         };
+        return true;
     };
 
     setGaugeStatus(statusStr){
@@ -86,11 +88,11 @@ function bleMain(DBus){
             case '1':
                 console.log('Sending gauge reset request ');
                 gTx.sendEncodedCmd(gTx.encodeCmd(gTx._cmdList.Reset));
-                
+
             break;
     
-            case '2':
-                console.log('Firing zero gauge needle event')
+            case '15':
+                console.log('Sending Identifify gauge request')
 
             break;
 

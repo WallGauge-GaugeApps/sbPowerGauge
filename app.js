@@ -15,8 +15,11 @@ function getSolarData(){
             console.log('Currently generating ' + dtaObj.powerNow + " " + dtaObj.powerNowUnit);
             console.log("\tToday's total power = " + dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
             console.log('\tTotal all time power generated = '+ dtaObj.powerTotal + " " + dtaObj.powerTotalUnit);
-            appMan.setGaugeValue(dtaObj.powerNow);
-            appMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+            if(appMan.setGaugeValue(dtaObj.powerNow)){
+                appMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+            } else {
+                console.log('Not allowed to send gaguge value at this time by AppManager.  Check IOS App for details');
+            };
         } else {
             console.log('Error getting data from Sunnyboy WebBox');
             console.log(errTxt);
