@@ -1,8 +1,7 @@
 const sunnyBoyWebBox =  require('sunnyboy-web-box-data-fetcher');
-const MyAppManager =      require('./myAppManager.js');
+const MyAppMan =        require('./myAppManager.js');
 
-const myAppMan = new MyAppManager();
-
+const myAppMan = new MyAppMan();
 
 console.log('Sunnyboy WebBox IP Address = '+ myAppMan.webBoxIP);
 var solarData =  new sunnyBoyWebBox(myAppMan.webBoxIP);

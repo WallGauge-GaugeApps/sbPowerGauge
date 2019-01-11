@@ -1,8 +1,8 @@
-const AppManager =      require('./appManager.js');
+const AppManager = require("./appManager.js");
 
-class myAppManager extends AppManager(){
+class myAppManager extends AppManager{
     bleMyConfig(){
-        console.log('setting up my characteristics');
+        console.log('setting up sbPowerGauge specfic characteristics');
         var webBoxIp =      bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
 
         webBoxIp.on('WriteValue', (device, arg1)=>{
@@ -14,7 +14,7 @@ class myAppManager extends AppManager(){
         });
 
         webBoxIp.setValue(Config.webBoxIP);
-    }
-}
+    };
+};
 
 module.exports = myAppManager;
