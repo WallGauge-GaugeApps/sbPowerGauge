@@ -16,3 +16,5 @@ class myAppManager extends AppManager(){
         webBoxIp.setValue(Config.webBoxIP);
     }
 }
+
+module.exports = myAppManager;
