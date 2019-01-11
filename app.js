@@ -32,7 +32,7 @@ myAppMan.on('Update', ()=>{
     console.log('New update event has fired.  Reloading gauge objects...');
     console.log('The webBoxIP = ' + myAppMan.webBoxIP);
 
-    tx = new irTransmitter(myAppMan.gaugeIrAddress, myAppMan.calibrationTable);
+    //tx = new irTransmitter(myAppMan.gaugeIrAddress, myAppMan.calibrationTable);
     solarData =  new sunnyBoyWebBox(myAppMan.webBoxIP);
-    getSolarData();
+    //getSolarData();
 });
