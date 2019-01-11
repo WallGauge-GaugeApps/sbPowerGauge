@@ -122,7 +122,7 @@ class gaugeConfig extends EventEmitter{
         
         console.log('setting default characteristic values...');
         gaugeValue.setValue(self.value);
-        gaugeStatus.setValue(self.staus)
+        gaugeStatus.setValue(self.status)
 
         self.bleMyConfig();
     };
