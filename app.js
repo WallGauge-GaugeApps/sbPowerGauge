@@ -23,7 +23,7 @@ function getSolarData(){
         } else {
             console.log('Error getting data from Sunnyboy WebBox');
             console.log(errTxt);
-            myAppMan.setGaugeStatus('Error: ' + errTxt + ' at, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+            myAppMan.setGaugeStatus('Error getting data from SunnyBoy Webbox at '(new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString()  + ' -> '+ errTxt);
         };
     });
 };
