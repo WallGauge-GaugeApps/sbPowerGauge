@@ -1,5 +1,7 @@
 const AppManager = require("./appManager.js");
 
+//"webBoxIP":"10.50.0.50"
+
 class myAppManager extends AppManager{
     constructor(){
         super();
