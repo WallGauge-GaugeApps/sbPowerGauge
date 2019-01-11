@@ -17,7 +17,7 @@ class myAppManager extends AppManager{
             webBoxIp.setValue(arg1);
             var x = arg1.toString('utf8');
             this.webBoxIP=x;
-            saveItem({webBoxIP:x});
+            this.saveItem({webBoxIP:x});
         });
 
         webBoxIp.setValue(this.webBoxIP);

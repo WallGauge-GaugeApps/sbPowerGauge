@@ -37,10 +37,6 @@ class gaugeConfig extends EventEmitter{
         
     };
 
-    setWebBoxIP(ipAdd = '10.1.1.5'){
-        this.saveItem({webBoxIP:ipAdd});
-    };
-
     setGaugeValue(value){
         if(this._okToSend){
             gTx.sendValue(value);
@@ -147,7 +143,7 @@ class gaugeConfig extends EventEmitter{
         };
         Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
         console.log('firing "Update" event...');
-        self.emit('Update');
+        this.emit('Update');
     };
 
 };
