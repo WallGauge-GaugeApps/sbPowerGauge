@@ -1,5 +1,5 @@
 const sunnyBoyWebBox =  require('sunnyboy-web-box-data-fetcher');
-const MyAppMan =        require('./myAppManager.js');
+const MyAppMan =        require('./MyAppManager.js');
 
 const myAppMan = new MyAppMan();
 
