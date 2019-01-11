@@ -184,7 +184,7 @@ function bleMain(DBus){
             break;
         }
       });
-*/
+
     webBoxIp.on('WriteValue', (device, arg1)=>{
         console.log(device + ', has set new IP Address of ' + arg1);
         webBoxIp.setValue(arg1);
@@ -198,7 +198,7 @@ function bleMain(DBus){
     gaugeValue.setValue(self.value);
     gaugeStatus.setValue(self.staus)
 };
-
+*/
 function saveItem(itemsToSaveAsObject){
     console.log('saveItem called with:');
     console.log(itemsToSaveAsObject);
