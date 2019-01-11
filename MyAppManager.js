@@ -1,8 +1,13 @@
 const AppManager = require("./appManager.js");
 
 class myAppManager extends AppManager{
+    constructor(){
+        super();
+        this.webBoxIP = this.config.webBoxIP;
+    };
+    
     bleMyConfig(){
-        console.log('Setting up sbPowerGauge specfic characteristics and config.');
+        console.log('Setting up sbPowerGauge specfic characteristics and config.'); 
         var webBoxIp = this.bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
 
         webBoxIp.on('WriteValue', (device, arg1)=>{
@@ -13,7 +18,7 @@ class myAppManager extends AppManager{
             saveItem({webBoxIP:x});
         });
 
-        webBoxIp.setValue(Config.webBoxIP);
+        webBoxIp.setValue(this.webBoxIP);
     };
 };
 

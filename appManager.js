@@ -26,12 +26,12 @@ class gaugeConfig extends EventEmitter{
         this.descripition = Config.descripition;
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
-        this.webBoxIP = Config.webBoxIP;
+        //this.webBoxIP = Config.webBoxIP;
         this.status = 'ipl, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = 'unknown';
         this.rGaugeCmdTable = gTx._calibrationTable
         this._okToSend = true;
-        this.irTx = {};
+        this.config = Config;
         this.bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this.bleMasterConfig, false);
         self = this;
         
