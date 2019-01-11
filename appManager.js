@@ -15,7 +15,7 @@ var Config = {...defaultGaugeConfig, ...modifiedConfigMaster};
 
 var gTx = new irTransmitter(Config.gaugeIrAddress, Config.calibrationTable);
 
-var bPrl;
+//var bPrl;
 var self;
 var gaugeValue;
 var gaugeStatus;
@@ -32,8 +32,9 @@ class gaugeConfig extends EventEmitter{
         this.rGaugeCmdTable = gTx._calibrationTable
         this._okToSend = true;
         this.irTx = {};
+        this.bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this.bleMasterConfig, false);
         self = this;
-        bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this.bleMasterConfig, false);
+        
     };
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
@@ -69,11 +70,11 @@ class gaugeConfig extends EventEmitter{
     }
 
     bleMasterConfig(DBus){
-        bPrl.logCharacteristicsIO = true;
+        self.bPrl.logCharacteristicsIO = true;
         console.log('Initialize charcteristics...')
-        gaugeStatus =       bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
-        gaugeValue =        bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
-        var gaugeCommand =  bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write"]);
+        gaugeStatus =       self.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
+        gaugeValue =        self.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
+        var gaugeCommand =  self.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write"]);
         //var webBoxIp =      bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
     
         console.log('Registering event handlers...');
