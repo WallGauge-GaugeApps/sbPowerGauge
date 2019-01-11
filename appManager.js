@@ -33,7 +33,7 @@ class gaugeConfig extends EventEmitter{
         this._okToSend = true;
         this.irTx = {};
         self = this;
-        bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this.bleConfig, false);
+        bPrl = new BLEperipheral(Config.dBusName, Config.uuid, this.bleMasterConfig, false);
     };
 
     setWebBoxIP(ipAdd = '10.1.1.5'){
@@ -64,13 +64,28 @@ class gaugeConfig extends EventEmitter{
         };
     };    
 
-    bleConfig(DBus){
+    bleMyConfig(){
+        console.log('setting up my characteristics');
+        var webBoxIp =      bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
+
+        webBoxIp.on('WriteValue', (device, arg1)=>{
+            console.log(device + ', has set new IP Address of ' + arg1);
+            webBoxIp.setValue(arg1);
+            var x = arg1.toString('utf8');
+            self.webBoxIP=x;
+            saveItem({webBoxIP:x});
+        });
+
+        webBoxIp.setValue(Config.webBoxIP);
+    }
+
+    bleMasterConfig(DBus){
         bPrl.logCharacteristicsIO = true;
         console.log('Initialize charcteristics...')
         gaugeStatus =       bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
         gaugeValue =        bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
         var gaugeCommand =  bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write"]);
-        var webBoxIp =      bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
+        //var webBoxIp =      bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
     
         console.log('Registering event handlers...');
         gaugeCommand.on('WriteValue', (device, arg1)=>{
@@ -115,7 +130,7 @@ class gaugeConfig extends EventEmitter{
                 break;
             }
           });
-    
+/*    
         webBoxIp.on('WriteValue', (device, arg1)=>{
             console.log(device + ', has set new IP Address of ' + arg1);
             webBoxIp.setValue(arg1);
@@ -123,11 +138,13 @@ class gaugeConfig extends EventEmitter{
             self.webBoxIP=x;
             saveItem({webBoxIP:x});
         });
-    
+*/    
         console.log('setting default characteristic values...');
-        webBoxIp.setValue(Config.webBoxIP);
+        //webBoxIp.setValue(Config.webBoxIP);
         gaugeValue.setValue(self.value);
         gaugeStatus.setValue(self.staus)
+
+        this.bleMyConfig();
     };
 
 };
