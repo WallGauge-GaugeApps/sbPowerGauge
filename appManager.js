@@ -144,7 +144,7 @@ class gaugeConfig extends EventEmitter{
         gaugeValue.setValue(self.value);
         gaugeStatus.setValue(self.staus)
 
-        this.bleMyConfig();
+        self.bleMyConfig();
     };
 
 };
