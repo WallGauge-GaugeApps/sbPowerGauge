@@ -12,13 +12,7 @@ if (fs.existsSync(modifiedConfigFilePath)){
 };
 
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster};
-
-//var gTx = new irTransmitter(Config.gaugeIrAddress, Config.calibrationTable);
-
-//var bPrl;
 var self;
-var gaugeValue;
-var gaugeStatus;
 
 class gaugeConfig extends EventEmitter{
     constructor(){
