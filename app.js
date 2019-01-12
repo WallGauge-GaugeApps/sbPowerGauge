@@ -6,8 +6,8 @@ const myAppMan = new MyAppMan();
 console.log('Sunnyboy WebBox IP Address = '+ myAppMan.webBoxIP);
 var solarData =  new sunnyBoyWebBox(myAppMan.webBoxIP);
 
-setTimeout(()  =>{getSolarData();},5000);                       // wait 5 seconds and then send gauge values (only ran once)
-setInterval(() =>{getSolarData();},  5 * 60 * 1000);            // every 5 minutes 
+setTimeout(()  =>{getSolarData();}, 5000);                     // wait 5 seconds and then send gauge values (only ran once)
+setInterval(() =>{getSolarData();}, 5 * 60 * 1000);            // every 5 minutes 
 
 function getSolarData(){
     solarData.updateValues(function(errNumber, errTxt, dtaObj){
@@ -30,9 +30,8 @@ function getSolarData(){
 
 myAppMan.on('Update', ()=>{
     console.log('New update event has fired.  Reloading gauge objects...');
+    myAppMan.setGaugeStatus('Config updated received. Please wait, may take up to 5 minutes to reload gauge objects. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString()  + ' -> '+ errTxt);
     console.log('The webBoxIP = ' + myAppMan.webBoxIP);
-
-    //tx = new irTransmitter(myAppMan.gaugeIrAddress, myAppMan.calibrationTable);
     solarData =  new sunnyBoyWebBox(myAppMan.webBoxIP);
-    //getSolarData();
+    getSolarData();
 });
