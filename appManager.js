@@ -30,7 +30,7 @@ class gaugeConfig extends EventEmitter{
         this.dBusName = Config.dBusName
         this.status = 'ipl, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = 'unknown';
-        this.rGaugeCmdTable = this.gTx._calibrationTable
+        //this.rGaugeCmdTable = this.gTx._calibrationTable
         this._okToSend = true;
         this.config = Config;
         this.gTx = new irTransmitter(this.gaugeIrAddress, this.calibrationTable);
