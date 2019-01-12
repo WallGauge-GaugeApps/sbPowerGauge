@@ -39,7 +39,7 @@ class gaugeConfig extends EventEmitter{
     };
 
     _bleConfig(DBus){
-        self.bleMasterConfig();
+        self._bleMasterConfig();
         self.bleMyConfig();
     }
 
