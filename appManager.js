@@ -26,7 +26,6 @@ class gaugeConfig extends EventEmitter{
         this.descripition = Config.descripition;
         this.calibrationTable = Config.calibrationTable;
         this.gaugeIrAddress = Config.gaugeIrAddress;
-        //this.webBoxIP = Config.webBoxIP;
         this.status = 'ipl, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = 'unknown';
         this.rGaugeCmdTable = gTx._calibrationTable
@@ -66,7 +65,7 @@ class gaugeConfig extends EventEmitter{
     }
 
     bleMasterConfig(DBus){
-        self.bPrl.logCharacteristicsIO = true;
+        this.bPrl.logCharacteristicsIO = true;
         console.log('Initialize charcteristics...')
         gaugeStatus =       self.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
         gaugeValue =        self.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
