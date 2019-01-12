@@ -29,8 +29,7 @@ class gaugeConfig extends EventEmitter{
         this.uuid = Config.uuid
         this.dBusName = Config.dBusName
         this.status = 'ipl, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
-        this.value = 'unknown';
-        //this.rGaugeCmdTable = this.gTx._calibrationTable
+        this.value = 'Not Set Yet';
         this._okToSend = true;
         this.config = Config;
         this.gTx = new irTransmitter(this.gaugeIrAddress, this.calibrationTable);
@@ -52,18 +51,18 @@ class gaugeConfig extends EventEmitter{
         };
         var logValue = value.toString() + ', ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = logValue;
-        gaugeValue.setValue(logValue);
-        if(gaugeValue.iface.Notifying){
-            gaugeValue.notify();
+        this.gaugeValue.setValue(logValue);
+        if(this.gaugeValue.iface.Notifying){
+            this.gaugeValue.notify();
         };
         return true;
     };
 
     setGaugeStatus(statusStr){
         this.status = statusStr;
-        gaugeStatus.setValue(statusStr);
-        if(gaugeStatus.iface.Notifying){
-            gaugeStatus.notify();
+        this.gaugeStatus.setValue(statusStr);
+        if(this.gaugeStatus.iface.Notifying){
+            this.gaugeStatus.notify();
         };
     };    
 
@@ -74,8 +73,8 @@ class gaugeConfig extends EventEmitter{
     _bleMasterConfig(){
         this.bPrl.logCharacteristicsIO = true;
         console.log('Initialize charcteristics...')
-        gaugeStatus =       this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
-        gaugeValue =        this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
+        this.gaugeStatus =       this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
+        this.gaugeValue =   this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
         var gaugeCommand =  this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write"]);
     
         console.log('Registering event handlers...');
@@ -123,8 +122,8 @@ class gaugeConfig extends EventEmitter{
           });   
         
         console.log('setting default characteristic values...');
-        gaugeValue.setValue(this.value);
-        gaugeStatus.setValue(this.status)
+        this.gaugeValue.setValue(this.value);
+        this.gaugeStatus.setValue(this.status)
     };
 
     saveItem(itemsToSaveAsObject){
