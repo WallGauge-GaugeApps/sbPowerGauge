@@ -1,4 +1,4 @@
-const AppManager = require("./appManager.js");
+const AppManager = require("./appManagerClass.js");
 
 //"webBoxIP":"10.50.0.50"
 

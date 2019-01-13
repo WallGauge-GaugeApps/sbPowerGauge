@@ -14,7 +14,7 @@ if (fs.existsSync(modifiedConfigFilePath)){
 var Config = {...defaultGaugeConfig, ...modifiedConfigMaster};
 var self;
 
-class gaugeConfig extends EventEmitter{
+class appManager extends EventEmitter{
     constructor(){
         super();
         this.descripition = Config.descripition;
@@ -145,4 +145,4 @@ class gaugeConfig extends EventEmitter{
 
 };
 
-module.exports = gaugeConfig;
+module.exports = appManager;
