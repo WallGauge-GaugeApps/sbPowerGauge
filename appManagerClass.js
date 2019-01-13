@@ -17,10 +17,10 @@ var self;
 class appManager extends EventEmitter{
     constructor(){
         super();
+        this.config = Config;
         this.status = 'ipl, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = 'Not Set Yet';
         this._okToSend = true;
-        this.config = Config;
         this.gTx = new irTransmitter(this.config.gaugeIrAddress, this.config.calibrationTable);
         this.bPrl = new BLEperipheral(this.config.dBusName, this.config.uuid, this._bleConfig, false);
         self = this;  
