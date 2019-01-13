@@ -69,12 +69,13 @@ class appManager extends EventEmitter{
         console.log('Initialize charcteristics...')
         this.gaugeStatus =  this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
         this.gaugeValue =   this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
-        this.gaugeCommand = this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["write-without-response", "encrypt-write"]);
+        this.gaugeCommand = this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-read","encrypt-write"]);
     
         console.log('Registering event handlers...');
         this.gaugeCommand.on('WriteValue', (device, arg1)=>{
             var cmdNum = arg1[0];
             var cmdValue = arg1[1]
+            var cmdResult = 'okay';
             console.log(device + ' has sent a new gauge command: number = ' + cmdNum + ', value = ' + cmdValue);
     
             switch (cmdNum) {
@@ -123,13 +124,16 @@ class appManager extends EventEmitter{
                         this.reloadConfig();
                     } else {
                         console.log('Warning: Custom configuration file not found.');
+                        cmdResult='Warning: Custom configuration file not found.'
                     };                   
                 break;
             
                 default:
                     console.log('no case for ' + cmdNum);
+                    cmdResult='Warning: no case or action for this command.'
                 break;
-            }
+            };
+            this.gaugeCommand.setValue('Last command num = ' + cmdNum + ', result = ' + cmdResult + ', at ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
           });   
         
         console.log('setting default characteristic values...');
