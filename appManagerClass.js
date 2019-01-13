@@ -61,18 +61,18 @@ class appManager extends EventEmitter{
     };    
 
     bleMyConfig(){
-        console.log('No user specfic configuraton for appManger using default characteristics only.');
+        console.log('No user specfic configuraton for appManger, using default characteristics only.');
     }
 
     _bleMasterConfig(){
         this.bPrl.logCharacteristicsIO = true;
         console.log('Initialize charcteristics...')
-        this.gaugeStatus =       this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
+        this.gaugeStatus =  this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
         this.gaugeValue =   this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
-        var gaugeCommand =  this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write"]);
+        this.gaugeCommand = this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write","write-without-response"]);
     
         console.log('Registering event handlers...');
-        gaugeCommand.on('WriteValue', (device, arg1)=>{
+        this.gaugeCommand.on('WriteValue', (device, arg1)=>{
             var cmdNum = arg1[0];
             var cmdValue = arg1[1]
             console.log(device + ' has sent a new gauge command: number = ' + cmdNum + ', value = ' + cmdValue);
@@ -80,33 +80,50 @@ class appManager extends EventEmitter{
             switch (cmdNum) {
                 case 0:
                     console.log('Sending test battery to gauge...');
+                    this.setGaugeStatus('Sending test battery command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Check_Battery_Voltage));
                 break;
         
                 case 1:
                     console.log('Sending gauge reset request ');
+                    this.setGaugeStatus('Sending reset command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Reset));
                 break;
     
                 case 2:
                     console.log('Sending gauge Zero Needle request ');
+                    this.setGaugeStatus('Sending zero needle command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Zero_Needle));
                 break;          
         
                 case 15:
                     console.log('Sending Identifify gauge request')
+                    this.setGaugeStatus('Sending identifify command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Identifify));
                 break;
     
                 case 20:
                     console.log('Disable normal gauge value TX during adminstration.')
+                    this.setGaugeStatus('Disable normal gauge value transmission during adminstration. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this._okToSend = false;
                     this.gTx.sendEncodedCmd(0);
                 break;
         
                 case 21:
                     console.log('Enable normal gauge value TX.')
+                    this.setGaugeStatus('Enabling normal gauge value transmission. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this._okToSend = true;
+                break;
+
+                case 22:
+                    console.log('Resetting gauge configuration to default.')
+                    if (fs.existsSync(modifiedConfigFilePath)){
+                        console.log('Removing custom configuration file' + modifiedConfigFilePath);
+                        this.setGaugeStatus('Removing custom configuration file and resetting gauge to default config. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+                        this.reloadConfig();
+                    } else {
+                        console.log('Warning: Custom configuration file not found.');
+                    };                   
                 break;
             
                 default:
