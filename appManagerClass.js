@@ -65,6 +65,7 @@ class appManager extends EventEmitter{
         this.gaugeStatus =  this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
         this.gaugeValue =   this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
         this.gaugeCommand = this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-read","encrypt-write"]);
+        this.gaugeConfig =  this.bPrl.Characteristic('00000004-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeConfig', ["encrypt-read"]);
     
         console.log('Registering event handlers...');
         this.gaugeCommand.on('WriteValue', (device, arg1)=>{
@@ -135,6 +136,7 @@ class appManager extends EventEmitter{
         console.log('setting default characteristic values...');
         this.gaugeValue.setValue(this.value);
         this.gaugeStatus.setValue(this.status)
+        this.gaugeConfig.setValue(JSON.stringify(this.config));
     };
 
     saveItem(itemsToSaveAsObject){
@@ -157,6 +159,7 @@ class appManager extends EventEmitter{
         };
         Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
         this.config = Config;
+        this.gaugeConfig.setValue(JSON.stringify(this.config));
         console.log('firing "Update" event...');
         this.emit('Update');
     };

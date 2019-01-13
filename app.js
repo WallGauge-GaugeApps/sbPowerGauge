@@ -3,7 +3,7 @@ const MyAppMan =        require('./MyAppManager.js');
 
 const myAppMan = new MyAppMan();
 
-console.log('________________ App Config follows ____________________');
+console.log('__________________ App Config follows __________________');
 console.dir(myAppMan.config, {depth: null});
 console.log('________________________________________________________');
 
