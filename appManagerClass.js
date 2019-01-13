@@ -154,6 +154,7 @@ class appManager extends EventEmitter{
 
     reloadConfig(){
         console.log('config reloading...');
+        modifiedConfigMaster = {};
         if (fs.existsSync(modifiedConfigFilePath)){
             modifiedConfigMaster = JSON.parse(fs.readFileSync(modifiedConfigFilePath))
         };
