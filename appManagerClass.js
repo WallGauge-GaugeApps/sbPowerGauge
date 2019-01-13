@@ -69,7 +69,7 @@ class appManager extends EventEmitter{
         console.log('Initialize charcteristics...')
         this.gaugeStatus =  this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
         this.gaugeValue =   this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
-        this.gaugeCommand = this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-write","write-without-response"]);
+        this.gaugeCommand = this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["write-without-response", "encrypt-write"]);
     
         console.log('Registering event handlers...');
         this.gaugeCommand.on('WriteValue', (device, arg1)=>{
