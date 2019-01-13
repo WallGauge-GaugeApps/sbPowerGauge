@@ -3,8 +3,9 @@ const MyAppMan =        require('./MyAppManager.js');
 
 const myAppMan = new MyAppMan();
 
-console.log('App Config follows:'+ myAppMan.config.webBoxIP);
+console.log('________________ App Config follows ____________________');
 console.dir(myAppMan.config, {depth: null});
+console.log('________________________________________________________');
 
 var solarData =  new sunnyBoyWebBox(myAppMan.config.webBoxIP);
 
