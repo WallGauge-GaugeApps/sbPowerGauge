@@ -4,7 +4,7 @@ const MyAppMan =        require('./MyAppManager.js');
 const myAppMan = new MyAppMan();
 
 console.log('Sunnyboy WebBox IP Address = '+ myAppMan.config.webBoxIP);
-var solarData =  new sunnyBoyWebBox(myAppMan.webBoxIP);
+var solarData =  new sunnyBoyWebBox(myAppMan.config.webBoxIP);
 
 setTimeout(()  =>{getSolarData();}, 5000);                     // wait 5 seconds and then send gauge values (only ran once)
 setInterval(() =>{getSolarData();}, 5 * 60 * 1000);            // every 5 minutes 
