@@ -3,7 +3,7 @@ const MyAppMan =        require('./MyAppManager.js');
 
 const myAppMan = new MyAppMan();
 
-console.log('Sunnyboy WebBox IP Address = '+ myAppMan.webBoxIP);
+console.log('Sunnyboy WebBox IP Address = '+ myAppMan.config.webBoxIP);
 var solarData =  new sunnyBoyWebBox(myAppMan.webBoxIP);
 
 setTimeout(()  =>{getSolarData();}, 5000);                     // wait 5 seconds and then send gauge values (only ran once)
@@ -31,7 +31,7 @@ function getSolarData(){
 myAppMan.on('Update', ()=>{
     console.log('New update event has fired.  Reloading gauge objects...');
     myAppMan.setGaugeStatus('Config updated received. Please wait, may take up to 5 minutes to reload gauge objects. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
-    console.log('The webBoxIP = ' + myAppMan.webBoxIP);
-    solarData =  new sunnyBoyWebBox(myAppMan.webBoxIP);
+    console.log('The webBoxIP = ' + myAppMan.config.webBoxIP);
+    solarData =  new sunnyBoyWebBox(myAppMan.config.webBoxIP);
     getSolarData();
 });

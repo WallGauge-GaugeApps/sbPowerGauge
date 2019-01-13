@@ -17,17 +17,12 @@ var self;
 class appManager extends EventEmitter{
     constructor(){
         super();
-        this.descripition = Config.descripition;
-        this.calibrationTable = Config.calibrationTable;
-        this.gaugeIrAddress = Config.gaugeIrAddress;
-        this.uuid = Config.uuid
-        this.dBusName = Config.dBusName
         this.status = 'ipl, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString();
         this.value = 'Not Set Yet';
         this._okToSend = true;
         this.config = Config;
-        this.gTx = new irTransmitter(this.gaugeIrAddress, this.calibrationTable);
-        this.bPrl = new BLEperipheral(this.dBusName, this.uuid, this._bleConfig, false);
+        this.gTx = new irTransmitter(this.config.gaugeIrAddress, this.config.calibrationTable);
+        this.bPrl = new BLEperipheral(this.config.dBusName, this.config.uuid, this._bleConfig, false);
         self = this;  
     };
 
@@ -62,10 +57,6 @@ class appManager extends EventEmitter{
 
     bleMyConfig(){
         console.log('bleMyConfig not extended, there will not be any unique app characteristics set.  Using defaults only.');
-    }
-
-    myConfigHasChanged(){
-        console.log('myConfigHasChanged not extended, there are not any app specific variables to updated.');
     }
 
     _bleMasterConfig(){
@@ -165,7 +156,7 @@ class appManager extends EventEmitter{
             modifiedConfigMaster = JSON.parse(fs.readFileSync(modifiedConfigFilePath))
         };
         Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
-        this.myConfigHasChanged();
+        this.config = Config;
         console.log('firing "Update" event...');
         this.emit('Update');
     };
