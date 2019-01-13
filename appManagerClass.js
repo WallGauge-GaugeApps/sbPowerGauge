@@ -61,7 +61,11 @@ class appManager extends EventEmitter{
     };    
 
     bleMyConfig(){
-        console.log('No user specfic configuraton for appManger, using default characteristics only.');
+        console.log('bleMyConfig not extended, there will not be any unique app characteristics set.  Using defaults only.');
+    }
+
+    myConfigHasChanged(){
+        console.log('myConfigHasChanged not extended, there are not any app specific variables to updated.');
     }
 
     _bleMasterConfig(){
@@ -121,6 +125,7 @@ class appManager extends EventEmitter{
                     if (fs.existsSync(modifiedConfigFilePath)){
                         console.log('Removing custom configuration file' + modifiedConfigFilePath);
                         this.setGaugeStatus('Removing custom configuration file and resetting gauge to default config. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+                        fs.unlinkSync(modifiedConfigFilePath);
                         this.reloadConfig();
                     } else {
                         console.log('Warning: Custom configuration file not found.');
@@ -160,6 +165,7 @@ class appManager extends EventEmitter{
             modifiedConfigMaster = JSON.parse(fs.readFileSync(modifiedConfigFilePath))
         };
         Config = {...defaultGaugeConfig, ...modifiedConfigMaster}
+        this.myConfigHasChanged();
         console.log('firing "Update" event...');
         this.emit('Update');
     };

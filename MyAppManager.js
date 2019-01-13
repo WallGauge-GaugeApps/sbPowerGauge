@@ -7,7 +7,12 @@ class myAppManager extends AppManager{
         super();
         this.webBoxIP = this.config.webBoxIP;
     };
-    
+/*
+    myConfigHasBeenUpdate(){
+        console.log('New configuration file has been loaded.  Updateing my variables.');
+        this.webBoxIP = this.config.webBoxIP
+    }
+  */  
     bleMyConfig(){
         console.log('Setting up sbPowerGauge specfic characteristics and config.'); 
         var webBoxIp = this.bPrl.Characteristic('00000010-fe9e-4f7b-b56a-5f8294c6d817', 'webBoxIp', ["encrypt-read","encrypt-write"]);
