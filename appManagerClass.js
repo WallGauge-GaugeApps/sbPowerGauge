@@ -68,7 +68,7 @@ class appManager extends EventEmitter{
 
     _bleMasterConfig(){
         this.bPrl.logCharacteristicsIO = true;
-        this.bPrl.logAllDBusMessages = true;
+        //this.bPrl.logAllDBusMessages = true;
         console.log('Initialize charcteristics...')
         this.gaugeStatus =  this.bPrl.Characteristic('00000001-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeStatus', ["encrypt-read","notify"]);
         this.gaugeValue =   this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
