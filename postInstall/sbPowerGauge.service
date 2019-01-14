@@ -1,7 +1,11 @@
 [Unit]
 Description=sbPowerGauge
+Wants=rgMan.service
+After=rgMan.service
 
 [Service]
+Type=dbus
+BusName=com.sbPowerGauge
 ExecStart=/bin/bash /opt/rGauge/gList/sbPowerGauge/autoStart
 Restart=on-failure
 StandardOutput=syslog
