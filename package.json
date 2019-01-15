@@ -18,7 +18,8 @@
   },
   "homepage": "",
   "dependencies": {
-    "gaugeappmanager": "git+https://github.com/RuckerGauge/gaugeAppManager.git",
+    "ble-peripheral": "git+https://github.com/RuckerGauge/blePeripheral.git",
+    "irdtxclass": "git+https://github.com/RuckerGauge/irdTxClass.git",
     "sunnyboy-web-box-data-fetcher": "git+https://github.com/RuckerGauge/sunnyboyWebBoxDataFetcher.git"
   }
 }
