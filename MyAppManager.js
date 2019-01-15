@@ -1,4 +1,4 @@
-const AppManager = require("./lib/appManagerClass.js");
+const AppManager = require("./appManagerClass.js");
 
 class myAppManager extends AppManager{
     bleMyConfig(){
