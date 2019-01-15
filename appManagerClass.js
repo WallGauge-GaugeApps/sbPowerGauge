@@ -17,7 +17,7 @@ var self;
 /**
  * This class provides an interface to the gauge’s factory default configuration settings in gaugeConfig.json as well as the dynamically created modifiedConfig.json file.  
  * The modifiedConfig.json will be created when a user configures their gauge.  Not all gauges will need a modifiedConfig.json file.   
- * Additionally, this class forwards gauge values to the irdTxService by calling the setGaugeValue(value) method.  
+ * Additionally, this class forwards gauge values to the irdTxService when a user calls the setGaugeValue(value) method.  
  * This method in turn uses the irdTxClass to communicate with the irdTxService and the ble-peripheral class to make the gauge value available to an administration device over BLE.  
  * See Readme.md for more usage information.
  */
