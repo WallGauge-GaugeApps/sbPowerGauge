@@ -12,6 +12,12 @@ class myAppManager extends AppManager{
             this.saveItem({webBoxIP:x});        //this will add {varName : Value} to this.config.  In this case to access the webBoxIP use this.config.webBoxIP
         });
 
+        webBoxIp.on('ReadValue', (device)=>{
+            console.log(device + ' has connected and is reading wbBoxIP');
+            webBoxIp.setValue(this.config.webBoxIP);
+            return (this.config.webBoxIP);
+        });
+
         webBoxIp.setValue(this.config.webBoxIP);
     };
 };
