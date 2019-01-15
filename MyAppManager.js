@@ -1,5 +1,4 @@
-const AppManager = require("./appManagerClass.js");
-//const AppManager = require("gaugeappmanager");
+const AppManager = require("./lib/appManagerClass.js");
 
 class myAppManager extends AppManager{
     bleMyConfig(){
