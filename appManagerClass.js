@@ -83,44 +83,44 @@ class appManager extends EventEmitter{
             console.log(device + ' has sent a new gauge command: number = ' + cmdNum + ', value = ' + cmdValue);
     
             switch (cmdNum) {
-                case 0:
+                case 0:     //0x00
                     console.log('Sending test battery to gauge...');
                     this.setGaugeStatus('Sending test battery command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Check_Battery_Voltage));
                 break;
         
-                case 1:
+                case 1:     //0x01
                     console.log('Sending gauge reset request ');
                     this.setGaugeStatus('Sending reset command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Reset));
                 break;
     
-                case 2:
+                case 2:     //0x02
                     console.log('Sending gauge Zero Needle request ');
                     this.setGaugeStatus('Sending zero needle command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Zero_Needle));
                 break;          
         
-                case 15:
+                case 15:    //0x0F
                     console.log('Sending Identifify gauge request')
                     this.setGaugeStatus('Sending identifify command to gauge. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this.gTx.sendEncodedCmd(this.gTx.encodeCmd(this.gTx._cmdList.Identifify));
                 break;
     
-                case 20:
+                case 20:    //0x14
                     console.log('Disable normal gauge value TX during adminstration.')
                     this.setGaugeStatus('Disable normal gauge value transmission during adminstration. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this._okToSend = false;
                     this.gTx.sendEncodedCmd(0);
                 break;
         
-                case 21:
+                case 21:    //0x15
                     console.log('Enable normal gauge value TX.')
                     this.setGaugeStatus('Enabling normal gauge value transmission. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
                     this._okToSend = true;
                 break;
 
-                case 22:
+                case 22:    //0x16
                     console.log('Resetting gauge configuration to default.')
                     if (fs.existsSync(modifiedConfigFilePath)){
                         console.log('Removing custom configuration file' + modifiedConfigFilePath);
