@@ -49,13 +49,7 @@ class appManager extends EventEmitter{
         this.value = logValue;
         this.gaugeValue.setValue(logValue);
 
-        
-        if(this.gaugeValue.iface.Notifying && !this.bPrl.client.connected){
-            console.log('Client no longer connected.  Clearing previous gauge value notify.');
-            this.gaugeValue.clearNotify();
-        }
-
-        if(this.gaugeValue.iface.Notifying){
+        if(this.gaugeValue.iface.Notifying && this.bPrl.client.connected){
             this.gaugeValue.notify();
         };
         return true;
@@ -65,12 +59,7 @@ class appManager extends EventEmitter{
         this.status = statusStr;
         this.gaugeStatus.setValue(statusStr);
 
-        if(this.gaugeStatus.iface.Notifying && !this.bPrl.client.connected){
-            console.log('Client no longer connected.  Clearing previous gauge status notify.');
-            this.gaugeStatus.clearNotify();
-        }
-
-        if(this.gaugeStatus.iface.Notifying){
+        if(this.gaugeStatus.iface.Notifying && this.bPrl.client.connected){
             this.gaugeStatus.notify();
         };
     };    
