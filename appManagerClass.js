@@ -31,6 +31,24 @@ class appManager extends EventEmitter{
         this.gTx = new irTransmitter(this.config.gaugeIrAddress, this.config.calibrationTable);
         this.bPrl = new BLEperipheral(this.config.dBusName, this.config.uuid, this._bleConfig, false);
         self = this;  
+
+        this.bPrl.on('ConnectionChange', (connected)=>{
+            var bleUserName = '';
+            if(this.bPrl.client.name == ''){
+              bleUserName = this.bPrl.client.devicePath;
+            } else {
+              bleUserName = this.bPrl.client.name;
+            };
+            if(connected == true){
+              console.log('--> ' + bleUserName + ' has connected to this server at ' + (new Date()).toLocaleTimeString());
+              if(this.bPrl.client.paired == false){
+                console.log('--> CAUTION: This BLE device is not authenticated.');
+              }
+            } else {
+              console.log('<-- ' + bleUserName + ' has disconnected from this server at ' + (new Date()).toLocaleTimeString());
+              this.bPrl.restartGattService();
+            };
+        });
     };
 
     _bleConfig(DBus){
@@ -174,7 +192,6 @@ class appManager extends EventEmitter{
         console.log('firing "Update" event...');
         this.emit('Update');
     };
-
 };
 
 module.exports = appManager;
