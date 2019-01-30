@@ -24,7 +24,7 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
 At this point the app should be up and running as a service  and you can use the `journalctl -u sbPowerGauge -f` command to see running status log.
 
 ## Configure the application to use your SunnyBoy Web Box
-You will need to set the IP address of your SunnyBoy Web Box.  This is done over BLE and requires our (not released yet) ios (iPhone or iPad) app.  As a workaround you can use LightBlue | Explorer to find and connect to this device and set the IP address.  This workaround will also work on an Android device. 
+You will need to set the IP address of your SunnyBoy Web Box.  This is done over BLE and requires our (not released yet) ios (iPhone or iPad) app.  As a workaround you can use LightBlue | Explorer to find and connect to this device and set the IP address.  This workaround will also work on an Android device (non IOS device). 
 
 **To Do:  Add instructions for configuring this app with Lightblue | Explorer**
 
