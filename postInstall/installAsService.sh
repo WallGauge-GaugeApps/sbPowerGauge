@@ -1,5 +1,6 @@
 #!/bin/bash
 # To make this file executable follow these steps https://stackoverflow.com/questions/21691202/how-to-create-file-execute-mode-permissions-in-git-on-windows
+set -e
 echo "NPM post install shell that installs this app as service starts now..."
 echo "Set irdclient as defalut group for sbPowerGauge -> sudo chown :irdclient ../sbPowerGauge"
 sudo chown :irdclient ../sbPowerGauge
