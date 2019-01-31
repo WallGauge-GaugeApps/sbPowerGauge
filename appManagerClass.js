@@ -94,6 +94,7 @@ class appManager extends EventEmitter{
         this.gaugeValue =   this.bPrl.Characteristic('00000002-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeValue', ["encrypt-read","notify"]);
         this.gaugeCommand = this.bPrl.Characteristic('00000003-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeCommand', ["encrypt-read","encrypt-write"]);
         this.gaugeConfig =  this.bPrl.Characteristic('00000004-fe9e-4f7b-b56a-5f8294c6d817', 'gaugeConfig', ["encrypt-read"]);
+        this.appVer =       this.bPrl.Characteristic('00000005-fe9e-4f7b-b56a-5f8294c6d817', 'appVer', ["encrypt-read"]);
     
         console.log('Registering event handlers...');
         this.gaugeCommand.on('WriteValue', (device, arg1)=>{
@@ -159,12 +160,18 @@ class appManager extends EventEmitter{
                 break;
             };
             this.gaugeCommand.setValue('Last command num = ' + cmdNum + ', result = ' + cmdResult + ', at ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
-          });   
+        });   
+        
+        this.appVer.on('ReadValue', (device) =>{
+            console.log(device + ' requesting app version')
+            this.appVer.setValue((JSON.parse(fs.readFileSync('package.json'))).version);
+        })
         
         console.log('setting default characteristic values...');
         this.gaugeValue.setValue(this.value);
         this.gaugeStatus.setValue(this.status)
         this.gaugeConfig.setValue(JSON.stringify(this.config));
+        //this.appVer.setValue((JSON.parse(fs.readFileSync('package.json'))).version);
     };
 
     saveItem(itemsToSaveAsObject){
