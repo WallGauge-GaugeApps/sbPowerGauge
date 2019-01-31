@@ -171,7 +171,6 @@ class appManager extends EventEmitter{
         this.gaugeValue.setValue(this.value);
         this.gaugeStatus.setValue(this.status)
         this.gaugeConfig.setValue(JSON.stringify(this.config));
-        //this.appVer.setValue((JSON.parse(fs.readFileSync('package.json'))).version);
     };
 
     saveItem(itemsToSaveAsObject){
