@@ -46,7 +46,10 @@ class appManager extends EventEmitter{
               }
             } else {
               console.log('<-- ' + bleUserName + ' has disconnected from this server at ' + (new Date()).toLocaleTimeString());
-              this.bPrl.restartGattService();
+              if(this.bPrl.areAnyCharacteristicsNotifying() == true){
+                console.log('Restarting gatt services to cleanup leftover notifications...')
+                this.bPrl.restartGattService();
+              };
             };
         });
     };
