@@ -1,7 +1,7 @@
 const sunnyBoyWebBox =  require('sunnyboy-web-box-data-fetcher');
 const MyAppMan =        require('./MyAppManager.js');
 
-const myAppMan = new MyAppMan();
+const myAppMan = new MyAppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
 
 console.log('__________________ App Config follows __________________');
 console.dir(myAppMan.config, {depth: null});
