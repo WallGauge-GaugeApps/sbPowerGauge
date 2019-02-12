@@ -2,6 +2,7 @@ const sunnyBoyWebBox =  require('sunnyboy-web-box-data-fetcher');
 const MyAppMan =        require('./MyAppManager.js');
 
 const myAppMan = new MyAppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
+var inAlert = false;
 
 console.log('__________________ App Config follows __________________');
 console.dir(myAppMan.config, {depth: null});
@@ -20,6 +21,10 @@ function getSolarData(){
             console.log('\tTotal all time power generated = '+ dtaObj.powerTotal + " " + dtaObj.powerTotalUnit);
             if(myAppMan.setGaugeValue(dtaObj.powerNow)){
                 myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+                if(inAlert == true){
+                    myAppMan.sendAlert({[myAppMan.config.descripition]:"0"});
+                    inAlert = false;
+                };
             } else {
                 console.log('Not allowed to send gaguge value at this time by AppManager.  Check IOS App for details');
             };
@@ -27,6 +32,10 @@ function getSolarData(){
             console.log('Error getting data from Sunnyboy WebBox');
             console.log(errTxt);
             myAppMan.setGaugeStatus('Error getting data from SunnyBoy Webbox at ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString()  + ' -> '+ errTxt);
+            if(inAlert == false){
+                myAppMan.sendAlert({[myAppMan.config.descripition]:"1"});
+                inAlert = true;
+            };
         };
     });
 };
