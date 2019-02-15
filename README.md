@@ -16,6 +16,7 @@ The rgMan app will automatically install this application so the following steps
 ---
 ## Manual Install Steps
 On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magpi/ssh-remote-control-raspberry-pi/):  
+* Create the irdclient group `sudo groupadd --system irdclient`
 * Create a the rgservice system user account (if not already created) by typing `sudo adduser rgservice --system --ingroup irdclient`
 * type `cd /opt/rGauge/gList`.  All rGauge apps are installed from this directory.  The directory should already exist if [rgMan](https://github.com/RuckerGauge/rgMan) has been installed correctly.
 * type `git clone https://github.com/RuckerGauge/sbPowerGauge.git`
