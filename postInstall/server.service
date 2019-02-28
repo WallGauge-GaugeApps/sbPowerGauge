@@ -6,7 +6,7 @@ After=rgMan.service
 [Service]
 Type=dbus
 BusName=com.sbPowerGauge
-ExecStart=/bin/bash /opt/rGauge/gList/sbPowerGauge/autoStart
+ExecStart=/usr/local/bin/node /opt/rGauge/gList/sbPowerGauge/app.js
 Restart=on-failure
 StandardOutput=syslog
 StandardError=syslog

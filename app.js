@@ -4,14 +4,15 @@ const MyAppMan =        require('./MyAppManager.js');
 const myAppMan = new MyAppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
 var inAlert = false;
 
+const getDataInterveral = 5;   // Time in minutes
+
 console.log('__________________ App Config follows __________________');
 console.dir(myAppMan.config, {depth: null});
 console.log('________________________________________________________');
 
 var solarData =  new sunnyBoyWebBox(myAppMan.config.webBoxIP);
 
-setTimeout(()  =>{getSolarData();}, 5000);                     // wait 5 seconds and then send gauge values (only ran once)
-setInterval(() =>{getSolarData();}, 5 * 60 * 1000);            // every 5 minutes 
+
 
 function getSolarData(){
     solarData.updateValues(function(errNumber, errTxt, dtaObj){
@@ -47,3 +48,34 @@ myAppMan.on('Update', ()=>{
     solarData =  new sunnyBoyWebBox(myAppMan.config.webBoxIP);
     getSolarData();
 });
+
+
+/*
+setTimeout(()  =>{getSolarData();}, 5000);                     // wait 5 seconds and then send gauge values (only ran once)
+setInterval(() =>{getSolarData();}, 5 * 60 * 1000);            // every 5 minutes 
+*/
+
+var randomStart = getRandomInt(5000, 60000);
+var dtaRenwalDelay = getRandomInt(60000, 600000);
+console.log('First data call will occur in '+ (randomStart / 1000).toFixed(2) + ' seconds.');
+console.log('The data renewal and data tx timmers will start ' + (dtaRenwalDelay / 60000).toFixed(2) + ' minutes after first data call.')
+
+console.log('After the first data call an update will be made every ' + getDataInterveral.toFixed(2) + ' minutes.');
+console.log('Valid data will be sent to the gauge as soon as it is received. ');
+
+
+setTimeout(()  =>{
+    getSolarData();
+}, randomStart);                     
+
+setTimeout(()=>{
+    console.log('Get data and tx data timmers starting now.')
+    setInterval(()=>{getSolarData()}, getDataInterveral * 60 * 1000);
+},dtaRenwalDelay + randomStart);
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  };

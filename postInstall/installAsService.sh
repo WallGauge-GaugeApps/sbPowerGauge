@@ -1,15 +1,15 @@
 #!/bin/bash
-# To make this file executable follow these steps https://stackoverflow.com/questions/21691202/how-to-create-file-execute-mode-permissions-in-git-on-windows
+# From DOS prompt type (git update-index --chmod=+x installAsService.sh) to make this file executable.
 set -e
 echo "NPM post install shell that installs this app as service starts now..."
 echo "Set irdclient as defalut group for sbPowerGauge -> sudo chown :irdclient ../sbPowerGauge"
 sudo chown :irdclient ../sbPowerGauge
 echo "Give default group write access to the sbPowerGauge directory -> sudo chmod g+w ../sbPowerGauge"
 sudo chmod g+w ../sbPowerGauge
-echo "Install D-Bus config file for this service -> sudo cp ./postInstall/sbPowerGauge.conf /etc/dbus-1/system.d"
-sudo cp ./postInstall/sbPowerGauge.conf /etc/dbus-1/system.d
-echo "Install systemd service file -> cp -n ./postInstall/sbPowerGauge.service /etc/systemd/system"
-sudo cp -n ./postInstall/sbPowerGauge.service /etc/systemd/system
+echo "Install D-Bus config file for this service -> sudo cp ./postInstall/dbus.conf /etc/dbus-1/system.d/sbPowerGauge.conf"
+sudo cp ./postInstall/dbus.conf /etc/dbus-1/system.d/sbPowerGauge.conf
+echo "Install systemd service file -> sudo cp -n ./postInstall/server.service /etc/systemd/system/sbPowerGauge.service"
+sudo cp -n ./postInstall/server.service /etc/systemd/system/sbPowerGauge.service
 echo "Enable the servers to start on reboot -> systemctl enable sbPowerGauge.service"
 sudo systemctl enable sbPowerGauge.service
 #echo "Start the service now -> systemctl start sbPowerGauge.service"
