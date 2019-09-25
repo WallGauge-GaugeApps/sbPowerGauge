@@ -12,8 +12,6 @@ console.log('________________________________________________________');
 
 var solarData =  new sunnyBoyWebBox(myAppMan.config.webBoxIP);
 
-
-
 function getSolarData(){
     solarData.updateValues(function(errNumber, errTxt, dtaObj){
         if(errNumber == 0){
@@ -48,12 +46,6 @@ myAppMan.on('Update', ()=>{
     solarData =  new sunnyBoyWebBox(myAppMan.config.webBoxIP);
     getSolarData();
 });
-
-
-/*
-setTimeout(()  =>{getSolarData();}, 5000);                     // wait 5 seconds and then send gauge values (only ran once)
-setInterval(() =>{getSolarData();}, 5 * 60 * 1000);            // every 5 minutes 
-*/
 
 var randomStart = getRandomInt(5000, 60000);
 var dtaRenwalDelay = getRandomInt(60000, 600000);
