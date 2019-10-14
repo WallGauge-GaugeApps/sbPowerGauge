@@ -1,7 +1,7 @@
 const sunnyBoyWebBox =  require('sunnyboy-web-box-data-fetcher');
 const MyAppMan =        require('./MyAppManager.js');
 
-const myAppMan = new MyAppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.encrypted', true);
+const myAppMan = new MyAppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.encrypted', false);
 var inAlert = false;
 
 const getDataInterveral = 5;   // Time in minutes
