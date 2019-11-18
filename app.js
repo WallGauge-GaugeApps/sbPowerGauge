@@ -17,16 +17,19 @@ function getSolarData(){
         if(errNumber == 0){
             console.log('Currently generating ' + dtaObj.powerNow + " " + dtaObj.powerNowUnit);
             //console.log("\tToday's total power = " + dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
-            //console.log('\tTotal all time power generated = '+ dtaObj.powerTotal + " " + dtaObj.powerTotalUnit);
-            if(myAppMan.setGaugeValue(dtaObj.powerNow)){
-                myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
-                if(inAlert == true){
-                    myAppMan.sendAlert({[myAppMan.config.descripition]:"0"});
-                    inAlert = false;
-                };
-            } else {
-                console.log('Not allowed to send gaguge value at this time by AppManager.  Check IOS App for details');
+            //console.log('\tTotal all time power generated = '+ dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
+
+            myAppMan.setGaugeValue(dtaObj.powerNow, ' watts, ' + 
+            dtaObj.powerToday + ", " + dtaObj.powerTodayUnit +
+            dtaObj.powerToday + ", " + dtaObj.powerTodayUnit +
+            (new Date()).toLocaleTimeString());
+            
+            myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+            if(inAlert == true){
+                myAppMan.sendAlert({[myAppMan.config.descripition]:"0"});
+                inAlert = false;
             };
+ 
         } else {
             console.log('Error getting data from Sunnyboy WebBox');
             console.log(errTxt);
