@@ -74,5 +74,6 @@ function getRandomInt(min, max) {
 
 setTimeout(()=>{
     console.log('sending error test');
-    myAppMan.sendAlert(JSON.stringify({['Sunnyboy WebBox']:"1"}));
+    myAppMan.sendAlert({['Sunnyboy WebBox']:"1"});
+    inAlert = true;
 },30000);
