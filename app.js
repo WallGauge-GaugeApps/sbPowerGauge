@@ -4,7 +4,7 @@ const MyAppMan =        require('./MyAppManager.js');
 const myAppMan = new MyAppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json', false);
 var inAlert = false;
 
-const getDataInterveral = 5;   // Time in minutes
+const getDataInterveral = 1;   // Time in minutes
 
 console.log('__________________ App Config follows __________________');
 console.dir(myAppMan.config, {depth: null});
@@ -20,8 +20,7 @@ function getSolarData(){
             //console.log('\tTotal all time power generated = '+ dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
 
             myAppMan.setGaugeValue(dtaObj.powerNow, ' watts, ' + 
-            dtaObj.powerToday + ", " + dtaObj.powerTodayUnit +
-            dtaObj.powerToday + ", " + dtaObj.powerTodayUnit +
+            dtaObj.powerToday + " " + dtaObj.powerTodayUnit + ", " +
             (new Date()).toLocaleTimeString());
             
             myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
@@ -74,9 +73,3 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 };
-
-setTimeout(()=>{
-    console.log('sending error test');
-    myAppMan.sendAlert({[myAppMan.config.descripition]:"1"});
-    inAlert = true;
-},30000);
