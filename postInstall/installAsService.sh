@@ -12,7 +12,7 @@ echo "Install systemd service file -> sudo cp -n ./postInstall/server.service /e
 sudo cp -n ./postInstall/server.service /etc/systemd/system/sbPowerGauge.service
 echo "Enable the servers to start on reboot -> systemctl enable sbPowerGauge.service"
 sudo systemctl enable sbPowerGauge.service
-#echo "Start the service now -> systemctl start sbPowerGauge.service"
-#sudo systemctl start sbPowerGauge.service
+echo "Start the service now -> systemctl start sbPowerGauge.service"
+sudo systemctl start sbPowerGauge.service
 echo "NPM Post install shell is complete."
-echo "To start this servers please reboot the server. After reboot Type -> journalctl -u sbPowerGauge -f <- to see status."
+#echo "To start this servers please reboot the server. After reboot Type -> journalctl -u sbPowerGauge -f <- to see status."
