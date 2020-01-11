@@ -6,5 +6,6 @@
     "gaugeIrAddress":"26",
     "battLifeInDays":"365",
     "battLastReplaced":"",
-    "webBoxIP":"10.0.0.2"
+    "webBoxIP":"10.0.0.2",
+    "gaugeURL":"https://www.sma-sunny.com/en/questions-and-answers-on-discontinuation-of-the-sunny-webbox/"
 }
