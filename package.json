@@ -18,7 +18,7 @@
   },
   "homepage": "",
   "dependencies": {
-    "app-manager": "git+https://github.com/RuckerGauge/appManager.git#dev",
+    "app-manager": "git+https://github.com/RuckerGauge/appManager.git",
     "sunnyboy-web-box-data-fetcher": "git+https://github.com/RuckerGauge/sunnyboyWebBoxDataFetcher.git"
   }
 }
