@@ -1,7 +1,7 @@
 [Unit]
 Description=sbPowerGauge
-Wants=rgMan.service
-After=rgMan.service
+Wants=gdtMan.service
+After=gdtMan.service
 
 [Service]
 Type=dbus
