@@ -1,7 +1,9 @@
 [Unit]
 Description=sbPowerGauge
 Wants=gdtMan.service
+Wants=bluetooth.service
 After=gdtMan.service
+After=bluetooth.service
 
 [Service]
 Type=dbus
