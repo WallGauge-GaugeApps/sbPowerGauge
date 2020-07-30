@@ -1,6 +1,6 @@
 {
   "name": "sb-power-gauge",
-  "version": "5.1.0",
+  "version": "6.1.0",
   "description": "Sends data to RG-wallhang wirelessly over infrared",
   "main": "app.js",
   "scripts": {
@@ -18,6 +18,9 @@
   },
   "homepage": "",
   "dependencies": {
-    "request": "^2.70.0"
+    "request": "^2.70.0",
+    "irdtxclass": "git+https://github.com/WallGauge/irdTxClass.git",
+    "app-manager": "git+https://github.com/WallGauge/appManager.git",
+    "cipher": "git+https://github.com/WallGauge/Cipher.git"
   }
 }
