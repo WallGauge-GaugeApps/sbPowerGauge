@@ -56,8 +56,22 @@ function getValues(dataObj, ipAdd = defaultSunnyWebBoxIP, rtnFunction = function
     fetch(uri, callObj)
         .then(res => res.json())
         .then((jsonData) => {
-            console.log('data follows');
+            logit('data follows');
             console.dir(jsonData, { depth: null });
+
+            dataObj.powerNow = jsonData.result.overview[0].value;
+            dataObj.powerNowUnit = jsonData.result.overview[0].unit;
+            dataObj.powerToday = jsonData.result.overview[1].value;
+            dataObj.powerTodayUnit = jsonData.result.overview[1].unit;
+            dataObj.powerTotal = jsonData.result.overview[2].value;
+            dataObj.powerTotalUnit = jsonData.result.overview[2].unit;
+            rtnFunction(errNumber, errTxt, dataObj);
+        })
+        .catch((err)=>{
+            console.error('Fetch Error:', err);
+            errNumber = 2;
+            errTxt = 'ERROR in getInstantValues(), may be a network issue or problem with URL\n\t' + err;
+            rtnFunction(errNumber, errTxt, dataObj);
         })
 };
 

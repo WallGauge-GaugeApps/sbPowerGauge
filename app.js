@@ -21,8 +21,11 @@ function getSolarData() {
             //console.log("\tToday's total power = " + dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
             //console.log('\tTotal all time power generated = '+ dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
 
-            myAppMan.setGaugeValue(dtaObj.powerNow, ' watts, ' +
-                dtaObj.powerToday + " " + dtaObj.powerTodayUnit + ", " +
+            myAppMan.setGaugeValue(dtaObj.powerNow, dtaObj.powerNowUnit + ', ' +
+                dtaObj.powerToday + " " + 
+                dtaObj.powerTodayUnit + ", " +
+                dtaObj.powerTotal + " " +
+                dtaObj.powerTotalUnit + ", " +
                 (new Date()).toLocaleTimeString());
 
             myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
