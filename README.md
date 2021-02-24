@@ -1,10 +1,11 @@
 # SunnyBoy Power Gauge App
 
-<img align="left" width="100" height="100" src="./docs/wallGaugeLogSquared.png">
+<figure> 
+    <img align="left" width="100" height="100" src="./docs/wallGaugeLogSquared.png" > 
+    <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+</figure>
 
-This WallGauge reads real-time solar production from a local SMA Sunny WebBox via its REST API. The solar production value is then sent to a physical battery powered gauge for display.
-
-[more information on the SunnyBow WebBox](https://www.sma-sunny.com/en/questions-and-answers-on-discontinuation-of-the-sunny-webbox/)
+&#174;This WallGauge reads real-time solar production from a SMA Sunny WebBox via its REST API. The solar production value is then sent to a physical battery powered gauge for display.  The data is read from the Sunny WebBox every 60 seconds and sent to the WallGauge. You should get approximately one year battery life out of three AAA batteries.
 
 ## GDT Administrator notes
 
@@ -21,3 +22,7 @@ The Value shown at the top of the screen is the the current power being generate
 ![pic](./docs/GaugePic.png)
 ![pic](./docs/GaugePicSide.png)
 ![pic](./docs/spin.gif)
+
+## Notes
+
+SMA has discontinued the SunnyBoy WebBox.  For more information [click here.](https://www.sma-sunny.com/en/questions-and-answers-on-discontinuation-of-the-sunny-webbox/)
