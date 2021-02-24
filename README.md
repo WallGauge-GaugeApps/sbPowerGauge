@@ -12,9 +12,9 @@ This WallGauge App reads real-time solar production from a SMA Sunny WebBox via 
 
 The above screenshot is from the WallGauge IOS App [gdtAdministrator](https://apps.apple.com/us/app/gdt-administrator/id1498115113) running on an iPad with this SunnyBoy Power Gauge App installed.
 
-To configure the gauge app you must tap on the “SunnyBoy Web Box Address” list item and enter the IP address of your SunnyBoy WebBox.  In this screen shot the address is 10.50.0.50.
+To configure the gauge app you must tap on the “SunnyBoy Web Box Address” list item and enter the IP address of your SunnyBoy WebBox.  In this screenshot the address is 10.50.0.50.
 
-The Value shown at the top of the screen is the the current power being generated, total kilowatt hours for the day, and total kilowatt hours since the array was commissioned.
+The "Value" field at the top of the screenshot is the current power being generated, total kilowatt hours for the day, and total kilowatt hours since the array was commissioned.
 
 ## Gauge Art
 
