@@ -1,4 +1,6 @@
-var request = require('request');
+const fetch = require('node-fetch');
+
+const logPrefix = 'sunnyboyWebBoxClass.js | ';
 
 var defaultDataObj = {
     powerNow: "",
@@ -40,25 +42,58 @@ function getValues(dataObj, ipAdd = defaultSunnyWebBoxIP, rtnFunction = function
         "id": "1",
         "format": "JSON"
     });
-    request.post({
-        url: 'http://' + ipAdd + '/rpc',
-        body: 'RPC=' + RP
-    }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var jsonData = JSON.parse(body);
-            dataObj.powerNow = jsonData.result.overview[0].value;
-            dataObj.powerNowUnit = jsonData.result.overview[0].unit;
-            dataObj.powerToday = jsonData.result.overview[1].value;
-            dataObj.powerTodayUnit = jsonData.result.overview[1].unit;
-            dataObj.powerTotal = jsonData.result.overview[2].value;
-            dataObj.powerTotalUnit = jsonData.result.overview[2].unit;
 
-        } else {
-            errNumber = 2;
-            errTxt = 'ERROR in getInstantValues(), may be a network issue or problem with URL\n\t' + error;
-        }
-        rtnFunction(errNumber, errTxt, dataObj);
-    });
+    let callObj = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: 'RPC=' + RP,
+        compress: true
+    };
+    let uri = 'http://' + ipAdd + '/rpc';
+
+    fetch(uri, callObj)
+        .then(res => res.json())
+        .then((jsonData) => {
+            console.log('data follows');
+            console.dir(jsonData, { depth: null });
+        })
+};
+
+
+// function getValuesOld(dataObj, ipAdd = defaultSunnyWebBoxIP, rtnFunction = function (errNumber, errTxt, dtaObj) { console.log(dtaObj); }) {
+//     var errNumber = 0
+//     var errTxt = "";
+//     var RP = JSON.stringify(RPC = {
+//         "version": "1.0",
+//         "proc": "GetPlantOverview",
+//         "id": "1",
+//         "format": "JSON"
+//     });
+//     request.post({
+//         url: 'http://' + ipAdd + '/rpc',
+//         body: 'RPC=' + RP
+//     }, function (error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//             var jsonData = JSON.parse(body);
+//             dataObj.powerNow = jsonData.result.overview[0].value;
+//             dataObj.powerNowUnit = jsonData.result.overview[0].unit;
+//             dataObj.powerToday = jsonData.result.overview[1].value;
+//             dataObj.powerTodayUnit = jsonData.result.overview[1].unit;
+//             dataObj.powerTotal = jsonData.result.overview[2].value;
+//             dataObj.powerTotalUnit = jsonData.result.overview[2].unit;
+
+//         } else {
+//             errNumber = 2;
+//             errTxt = 'ERROR in getInstantValues(), may be a network issue or problem with URL\n\t' + error;
+//         }
+//         rtnFunction(errNumber, errTxt, dataObj);
+//     });
+// };
+
+function logit(txt = '') {
+    console.debug(logPrefix + txt);
 };
 
 module.exports = sunnyWebBox;
