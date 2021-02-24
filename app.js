@@ -18,11 +18,9 @@ function getSolarData() {
     solarData.updateValues(function (errNumber, errTxt, dtaObj) {
         if (errNumber == 0) {
             console.log('Currently generating ' + dtaObj.powerNow + " " + dtaObj.powerNowUnit);
-            //console.log("\tToday's total power = " + dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
-            //console.log('\tTotal all time power generated = '+ dtaObj.powerToday + " " + dtaObj.powerTodayUnit);
 
-            myAppMan.setGaugeValue(dtaObj.powerNow, dtaObj.powerNowUnit + ', ' +
-                dtaObj.powerToday + " " + 
+            myAppMan.setGaugeValue(dtaObj.powerNow, ' ' + dtaObj.powerNowUnit + ', ' +
+                dtaObj.powerToday + " " +
                 dtaObj.powerTodayUnit + ", " +
                 dtaObj.powerTotal + " " +
                 dtaObj.powerTotalUnit + ", " +
