@@ -1,4 +1,6 @@
-# ![pic](./docs/wallGaugeLogSquared.png) SunnyBoy Power Gauge App
+# SunnyBoy Power Gauge App
+
+<img align="left" width="100" height="100" src="./docs/wallGaugeLogSquared.png">
 
 This WallGauge reads real-time solar production from a local SMA Sunny WebBox via its REST API. The solar production value is then sent to a physical battery powered gauge for display.
 
