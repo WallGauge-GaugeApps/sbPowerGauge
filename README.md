@@ -14,7 +14,7 @@ The above screenshot is from the WallGauge IOS App [gdtAdministrator](https://ap
 
 To configure the gauge app you must tap on the “SunnyBoy Web Box Address” list item and enter the IP address of your SunnyBoy WebBox.  In this screenshot the address is 10.50.0.50.
 
-The "Value" field at the top of the screenshot is the current power being generated, total kilowatt hours for the day, and total kilowatt hours since the array was commissioned.
+The "Value" field at the top of the screenshot shows the current power being generated, total kilowatt hours for the day, and total kilowatt hours since the array was commissioned.
 
 ## Gauge Art
 
